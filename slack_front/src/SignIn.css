@@ -28,6 +28,17 @@ header {
   text-decoration: none;
 }
 
+.Main_login_page {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
+  align-items: center;
+  max-width: 800px;
+  box-sizing: inherit;
+}
+
 .login_heading {
   font-family: Slack-Larsseit, Helvetica Neue, Helvetica, Segoe UI, Tahoma,
     Arial, sans-serif;
@@ -49,38 +60,41 @@ header {
   text-align: center;
 }
 
-.login_index {
+.start_SignIn {
+  display: block;
+  width: 400px;
+  text-align: center;
 }
 
-/* 구글 로그인 버튼 */
-.full_width {
-  width: 100%;
-  max-width: 100%;
+.google_oauth_container {
+  display: contents;
+  box-sizing: inherit;
 }
 
-.c-google_login {
-  background-color: #fff;
-  border: 2px solid #4285f4;
-  color: #4285f4;
-}
-
-.c-third_party_auth {
+.google_login_button {
   display: flex;
   padding: 0;
-}
 
-.c-button--large {
+  height: 44px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 96px;
+
+  /* 버튼 */
+  background-color: #fff;
+  border: 2px solid #4285f4;
+  border-radius: 4px;
+
+  /* 폰트 */
+  color: #4285f4;
   font-size: 18px;
   font-weight: 900;
-  height: 44px;
-  min-width: 96px;
 }
 
-.c-button {
+button {
   user-select: none;
   outline: none;
   cursor: pointer;
-  border-radius: 4px;
   align-items: center;
   position: relative;
   justify-content: center;
@@ -90,31 +104,95 @@ header {
   -webkit-tap-highlight-color: transparent;
 }
 
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
+.google_auth__icon {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
 }
 
-/* 여기까지 */
+svg:not(:root) {
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.horizontal_content_line_rule {
+  display: flex;
+  box-sizing: inherit;
+  margin-bottom: 24px;
+  margin-top: 24px;
+  align-items: center;
+}
 
 hr {
   display: block;
+  unicode-bidi: isolate;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  overflow: hidden;
   border: none;
   border-top: 1px solid #ddd;
   clear: both;
 }
 
-.horizontal_content_line {
+.horizontal_content_leftLine {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.horizontal_content_content {
+  display: block;
+  padding: 0 20px;
+  box-sizing: inherit;
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: initial;
+  color: #1d1c1d;
+  font-variant-ligatures: common-ligatures;
+  -webkit-font-smoothing: antialiased;
+}
+
+.horizontal_content_rightLine {
   flex-grow: 1;
   margin: 0;
 }
 
 .email_input_box {
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .email_login_box {
-  margin-top: 8px;
+  color: #fff;
+  background-color: #4a154b;
+  border: none;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 900;
+  height: 44px;
+  min-width: 96px;
+  padding: 0 16px 3px;
+  transition: all 80ms linear;
+  --saf-0: rgba(var(--sk_primary_foreground, 29, 28, 29), 0.3);
+  background-clip: padding-box;
+  text-decoration: none;
+  border-radius: 4px;
+  align-items: center;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  align-items: center;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
 }
