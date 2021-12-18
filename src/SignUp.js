@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import "./SignUp.css";
 
@@ -9,26 +9,31 @@ const rEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
 function SignUp() {
   const [email, setEmail] = useState("");
-  const [validation, setValidation] = useState("DEFAULT"); // empty, invalid, default
+  const [isAlert, setIsAlert] = useState(false);
+  const [validation, setValidation] = useState("EMPTY"); //INVALID VALID EMPTY
   const navigate = useNavigate();
 
-  function handleChange(e) {
+  const handleValidate = () => {
+    if (rEmail.test(email)) setValidation("VALID");
+    else if (email === "") setValidation("EMPTY");
+    else setValidation("INVALID");
+  };
+  useEffect(handleValidate, [email]);
+
+  const handleChange = (e) => {
     setEmail(e.target.value);
-    if (validation !== "DEFAULT") {
-      if (e.target.value === "") setValidation("EMPTY");
-      else setValidation("INVALID");
-    }
-  }
-  function handleContinue(e) {
+  };
+
+  const handleContinue = (e) => {
     e.preventDefault();
-    if (rEmail.test(email)) {
-      //TODO: email 보내기
+    if (validation === "VALID") {
+      //send email
       navigate("/confirmemail");
     } else {
-      if (email === "") setValidation("EMPTY");
-      else setValidation("INVALID");
+      setIsAlert(true);
     }
-  }
+  };
+
   return (
     <div className="app-root">
       <header>
@@ -58,23 +63,29 @@ function SignUp() {
               onChange={handleChange}
               autoComplete="off"
               placeholder="name@work-email.com"
-              className={validation === "DEFAULT" && "input-default"}
+              className={
+                isAlert && validation !== "VALID" ? "" : "input-default"
+              }
             />
-            <div class={validation !== "DEFAULT" && "alert-box"}>
-              {validation !== "DEFAULT" && (
-                <span class="alert-icon">
+            <div
+              className={isAlert && validation !== "VALID" ? "alert-box" : ""}
+            >
+              {isAlert && validation !== "VALID" && (
+                <span className="alert-icon">
                   <FiAlertTriangle color="red" size="17" />
                 </span>
               )}
-              {validation === "INVALID" && (
+              {isAlert && validation === "INVALID" && (
                 <span className="alert-message">{ALERT_INVALID}</span>
               )}
-              {validation === "EMPTY" && (
+              {isAlert && validation === "EMPTY" && (
                 <span className="alert-message">{ALERT_EMPTY}</span>
               )}
             </div>
           </div>
-          <button className="form-button">계속</button>
+          <button className="form-button" type="submit">
+            계속
+          </button>
           <div className="form-ts-cs">
             계속 진행하면 Slack의 고객 서비스 약관, 개인정보 보호 정책, 쿠키
             정책에 동의하는 것으로 간주됩니다.
