@@ -72,6 +72,16 @@ header {
 }
 
 .google_login_button {
+  user-select: none;
+  outline: none;
+  cursor: pointer;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
   display: flex;
   padding: 0;
 
@@ -91,7 +101,7 @@ header {
   font-weight: 900;
 }
 
-button {
+/* button {
   user-select: none;
   outline: none;
   cursor: pointer;
@@ -102,19 +112,7 @@ button {
   white-space: nowrap;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-}
-
-.google_auth__icon {
-  margin-right: 12px;
-  width: 18px;
-  height: 18px;
-}
-
-svg:not(:root) {
-  overflow: hidden;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
+} */
 
 .horizontal_content_line_rule {
   display: flex;
