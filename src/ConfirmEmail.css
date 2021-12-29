@@ -1,0 +1,142 @@
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  color: #1264a3;
+  text-decoration: none;
+}
+
+.p-get_started_confirmation_code {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.p-get_started_confirmation_code__input_container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.p-get_started_confirmation_code__input_fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.offscreen {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  user-select: none;
+}
+
+.align_items_center {
+  align-items: center;
+}
+
+.display_flex {
+  display: flex;
+}
+
+.margin_bottom_50 {
+  margin-bottom: 8px;
+}
+
+.split_input_item {
+  --saf-0: rgba(var(--sk_foreground_max, 29, 28, 29), 0.7);
+  border: 1px solid var(--saf-0);
+  border-color: rgba(var(--sk_foreground_high, 29, 28, 29), 0.5);
+}
+
+.split_input_item:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.split_input_item:not(:first-child) {
+  border-left: none;
+}
+
+.split_input_item:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.split_input_item input {
+  color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1);
+  height: 92px;
+  width: 100%;
+  font-size: 50px;
+  line-height: 56px;
+  text-align: center;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+input[type="text" i] {
+  padding: 1px 2px;
+}
+
+.confirmation_code_span_cell {
+  font-weight: 400;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+.margin_50 {
+  margin: 8px 8px;
+}
+
+.confirmation_code_checker {
+  margin-top: 15px;
+}
+
+.c-button-unstyled {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  line-height: inherit;
+  overflow: initial;
+  padding: 0;
+  text-align: initial;
+  vertical-align: initial;
+  cursor: pointer;
+}
+
+.p-get_started__email_app_link {
+  font-size: 14px;
+  line-height: 20px;
+  color: #616061;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.p-get_started_confirmation_code__hint {
+  font-size: 14px;
+  line-height: 20px;
+  color: #454245;
+  margin-bottom: 16px;
+}
+
+.margin_right_250 {
+  margin-right: 40px;
+}

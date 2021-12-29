@@ -1,0 +1,42 @@
+.p-refreshed_page__header {
+  padding: 48px 0 40px;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.p-refreshed_page__header .center-col {
+  text-align: center;
+}
+
+.p-refreshed_page {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
+  align-items: center;
+  max-width: 800px;
+}
+
+.p-refreshed_page__heading {
+  font-family: Slack-Larsseit, Helvetica Neue, Helvetica, Segoe UI, Tahoma,
+    Arial, sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 46px;
+  max-width: 700px;
+  text-align: center;
+  letter-spacing: -0.75px;
+  margin-bottom: 10px;
+}
+
+.p-refreshed_page__sub_heading {
+  font-size: 18px;
+  line-height: 27px;
+  margin-bottom: 32px;
+  color: #454245;
+  max-width: 700px;
+  text-align: center;
+}
