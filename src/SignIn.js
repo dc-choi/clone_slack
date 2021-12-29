@@ -46,9 +46,9 @@ function SignIn() {
         <div className="start_SignIn">
           {/* 구글 계정으로 로그인 => Google-OAuth-사용하기 */}
           <div className="google_oauth_container">
-            <React.StrictMode>
+            <div className="g-signin2">
               <LoginGoogle />
-            </React.StrictMode>
+            </div>
             {/* <button className="google_login_button">
               <strong>Google 계정으로 로그인</strong>
             </button> */}

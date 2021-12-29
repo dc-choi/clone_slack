@@ -71,7 +71,7 @@ header {
   box-sizing: inherit;
 }
 
-.google_login_button {
+.g-signin2 {
   user-select: none;
   outline: none;
   cursor: pointer;
@@ -82,6 +82,7 @@ header {
   white-space: nowrap;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
+
   display: flex;
   padding: 0;
 

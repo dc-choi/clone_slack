@@ -8,7 +8,6 @@ import ConfirmEmail from "./ConfirmEmail";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import LoginGoogle from "./LoginGoogle";
-import SuccessLogin from "./SuccessLogin";
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/confirmemail" element={<ConfirmEmail />} />
         <Route path="/LoginGoogle" element={<LoginGoogle />} />
-        <Route path="/SuccessLogin" element={<SuccessLogin />} />
       </Routes>
     </BrowserRouter>
   );

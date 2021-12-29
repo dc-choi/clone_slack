@@ -1,73 +1,61 @@
-import React from "react";
-import { GoogleLogin } from "react-google-login";
-import { useNavigate } from "react-router-dom";
-
-// will: 구글 로그인 버튼 스타일링
-// import styled from "styled-components";
-// styled(GoogleLogin)`
-//   user-select: none;
-//   outline: none;
-//   cursor: pointer;
-//   align-items: center;
-//   position: relative;
-//   justify-content: center;
-//   text-align: center;
-//   white-space: nowrap;
-//   -webkit-appearance: none;
-//   -webkit-tap-highlight-color: transparent;
-//   display: flex;
-//   padding: 0;
-
-//   height: 44px;
-//   width: 100%;
-//   max-width: 100%;
-//   min-width: 96px;
-
-//   /* 버튼 */
-//   background-color: #fff;
-//   border: 2px solid #4285f4;
-//   border-radius: 4px;
-
-//   /* 폰트 */
-//   color: #4285f4;
-//   font-size: 18px;
-//   font-weight: 900;
-// `;
+import React, { useState } from "react";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 
 const clientId =
   "248077278329-q9kjf8grukacs6e30osrdg3h0vvd9rns.apps.googleusercontent.com";
 
 function LoginGoogle() {
-  const navigate = useNavigate();
-  const onLoginSuccess = (res) => {
-    console.log("Login Success:", res.profileObj);
-    navigate("/SuccessLogin");
+  const [showloginButton, setShowloginButton] = useState(true);
+  const [showlogoutButton, setShowlogoutButton] = useState(false);
 
-    // 구글 로그인 성공하면 화면 전환(=> SuccessLogin.js)
+  const onLoginSuccess = (res) => {
+    // 자동 로그인 방지 위한 코드 => 문제 해결 안됨
+    window.sessionStorage.setItem("access_token", res.accessToken);
+
+    console.log("Login Success:", res.profileObj);
+    setShowloginButton(false);
+    setShowlogoutButton(true);
   };
-  /**
-   * window.sessionStorage.setItem("access_token", response.accessToken);
-   * 로그인 할 때 성공하면 token저장
-   */
 
   const onLoginFailure = (res) => {
     console.log("Login Failed:", res);
   };
 
+  const onSignoutSuccess = () => {
+    // 자동 로그인 방지 위한 코드 => 문제 해결 안됨
+    window.sessionStorage.removeItem("access_token");
+
+    alert("You have been logged out successfully");
+    console.clear();
+    setShowloginButton(true);
+    setShowlogoutButton(false);
+  };
+
   return (
     <div>
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Google 계정으로 로그인"
-        onSuccess={onLoginSuccess}
-        onFailure={onLoginFailure}
-        cookiePolicy={"single_host_origin"}
-        isSignedIn={true}
-      />
+      {showloginButton ? (
+        <GoogleLogin
+          clientId={clientId}
+          buttonText="구글로 로그인"
+          onSuccess={onLoginSuccess}
+          onFailure={onLoginFailure}
+          cookiePolicy={"single_host_origin"}
+          isSignedIn={true}
+        />
+      ) : null}
+
+      {/**자동 로그인 현상 테스트를 위한 코드,
+       * 로그인 -> 구글 로그인 창 뜸 -> 로그인 성공 -> 로그아웃 -> 다시 로그인할 때 구글 로그인 창이 안뜨고 자동 로그인이 됨
+       */}
+      {showlogoutButton ? (
+        <GoogleLogout
+          clientId={clientId}
+          buttonText="로그아웃"
+          onLogoutSuccess={onSignoutSuccess}
+        ></GoogleLogout>
+      ) : null}
     </div>
   );
 }
-
-// will: 백엔드로 token보내기
 
 export default LoginGoogle;
