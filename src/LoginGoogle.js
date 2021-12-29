@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 
-const clientId = process.env.REACT_APP_GOOGLE_OAUTH_CLIENTID;
+const clientId = { key: process.env.REACT_APP_GOOGLE_OAUTH_CLIENTID };
 
 function LoginGoogle() {
   const [showloginButton, setShowloginButton] = useState(true);
