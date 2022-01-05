@@ -1,61 +1,67 @@
 import React, { useState } from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { GoogleLogin } from "react-google-login";
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function LoginGoogle() {
   const [showloginButton, setShowloginButton] = useState(true);
   const [showlogoutButton, setShowlogoutButton] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   const onLoginSuccess = (res) => {
-    // 자동 로그인 방지 위한 코드 => 문제 해결 안됨
-    window.sessionStorage.setItem("access_token", res.accessToken);
-
     console.log("Login Success:", res.profileObj);
     setShowloginButton(false);
     setShowlogoutButton(true);
+    setIsLogin(true);
   };
-  console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID);
-  console.log(process.env.REACT_APP_TEST);
 
   const onLoginFailure = (res) => {
     console.log("Login Failed:", res);
   };
 
   const onSignoutSuccess = () => {
-    // 자동 로그인 방지 위한 코드 => 문제 해결 안됨
-    window.sessionStorage.removeItem("access_token");
-
-    alert("You have been logged out successfully");
-    console.clear();
     setShowloginButton(true);
     setShowlogoutButton(false);
+    setIsLogin(false);
+  };
+
+  const onLogout = () => {
+    if (window.gapi) {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      if (auth2 !== null) {
+        auth2
+          .signOut()
+          .then(auth2.disconnect().then(() => onSignoutSuccess()))
+          .catch((e) => console.log(e));
+      }
+    }
   };
 
   return (
-    <div>
-      {showloginButton ? (
-        <GoogleLogin
-          clientId={clientId}
-          buttonText="구글로 로그인"
-          onSuccess={onLoginSuccess}
-          onFailure={onLoginFailure}
-          cookiePolicy={"single_host_origin"}
-          isSignedIn={true}
-        />
-      ) : null}
-
-      {/**자동 로그인 현상 테스트를 위한 코드,
-       * 로그인 -> 구글 로그인 창 뜸 -> 로그인 성공 -> 로그아웃 -> 다시 로그인할 때 구글 로그인 창이 안뜨고 자동 로그인이 됨
-       */}
-      {showlogoutButton ? (
-        <GoogleLogout
-          clientId={clientId}
-          buttonText="로그아웃"
-          onLogoutSuccess={onSignoutSuccess}
-        ></GoogleLogout>
-      ) : null}
-    </div>
+    <>
+      {isLogin ? (
+        <>
+          {showlogoutButton ? (
+            <button type="button" onClick={onLogout}>
+              logout
+            </button>
+          ) : null}
+        </>
+      ) : (
+        <>
+          {showloginButton ? (
+            <GoogleLogin
+              clientId={clientId}
+              buttonText="구글로 로그인"
+              onSuccess={onLoginSuccess}
+              onFailure={onLoginFailure}
+              cookiePolicy={"single_host_origin"}
+              isSignedIn={true}
+            />
+          ) : null}
+        </>
+      )}
+    </>
   );
 }
 
