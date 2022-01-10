@@ -1,0 +1,314 @@
+h4 {
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: initial;
+}
+
+.p-workspaces_view__heading {
+  margin-bottom: 0 !important;
+  font-size: 32px !important;
+  letter-spacing: -0.25px !important;
+  line-height: 38px !important;
+}
+
+.p-workspaces_view__subheading {
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 400;
+  color: rgba(var(--sk_foreground_max_solid, 97, 96, 97), 1);
+  line-height: 22px;
+}
+
+.p-workspaces_view__container {
+  width: 600px;
+  max-width: 600px;
+}
+
+.p-workspaces_view__your_workspaces {
+  margin-top: 8px;
+}
+
+.p-workspaces_list {
+  margin-bottom: 40px;
+}
+
+.p-workspaces_list > .p-workspaces_list__panel {
+  --saf-0: rgba(var(--sk_foreground_low_solid, 221, 221, 221), 1);
+  border: solid 1px var(--saf-0);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  border-radius: 4px;
+}
+
+.p-workspaces_list
+  > .p-workspaces_list__panel
+  .p-workspaces_list__panel_subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 55px;
+  padding: 0 24px;
+  border-bottom: solid 1px
+    rgba(var(--sk_foreground_low_solid, 221, 221, 221), 1);
+}
+
+.p-workspaces_list__link {
+  color: inherit;
+  display: block;
+  padding: 15px 24px 20px;
+}
+
+.p-workspaces_list__link:hover {
+  background-color: #f7f7f7;
+}
+
+.p-workspace_info {
+  display: flex;
+}
+
+.p-workspaces_list__invitations .p-workspace_info + .p-workspace_info {
+  margin-top: 24px;
+}
+
+.p-workspace_info__icon {
+  margin-right: 13px;
+  margin-top: 5px;
+}
+
+.c-team_icon {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  border-radius: 3px;
+}
+
+.c-team_icon--default {
+  flex-shrink: 0;
+  background-color: rgba(var(--sk_foreground_max_solid, 97, 96, 97), 1);
+  color: rgba(var(--sk_inverted_foreground, 255, 255, 255), 1);
+  overflow: hidden;
+  text-shadow: 0 1px 1px rgb(0 0 0 / 20%);
+}
+
+.c-team_icon--default,
+.c-team_icon--pending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.p-workspace_info__team_icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 5px;
+}
+
+.p-workspace_info__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 100px;
+}
+
+.p-workspace_info__title {
+  color: #1d1c1d;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+  height: 27px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.p-workspace_info__members {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.p-workspace_info__members .count {
+  color: rgba(var(--sk_foreground_max, 29, 28, 29), 0.7);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.p-workspace_info__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-workspaces_list .p-workspace_info__action {
+  padding-right: 24px;
+  transition: padding-right 0.2s;
+  color: black;
+}
+
+.p-workspaces_list .p-workspace_info__action:hover {
+  padding-right: 18px;
+  color: #1264a3;
+}
+
+.p-workspaces_list__link .p-workspaces_list__link_icon_text {
+  display: none;
+  font-size: 18px;
+  line-height: 18px;
+  margin-top: -2px;
+  color: inherit;
+}
+
+.c-icon {
+  position: relative;
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-workspaces_list .p-workspace_info__action .c-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.p-workspaces_list__workspaces_list_divider {
+  height: 0;
+  margin: 0 0 0 24px;
+}
+
+.visible {
+  display: inline !important;
+}
+
+.p-create_workspace_banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding: 20px 24px 20px 16px;
+  background-color: rgba(244, 237, 228, 0.5);
+  border-radius: 12px;
+}
+
+.p-create_workspace_banner__image {
+  width: 42px;
+  margin-right: 8px;
+}
+
+.c-button--medium {
+  font-size: 15px;
+  height: 36px;
+  min-width: 80px;
+  padding: 0 12px 1px;
+}
+
+.p-create_workspace_banner__button {
+  min-width: unset;
+}
+
+.c-button--outline,
+.c-button--outline:link,
+.c-button--outline:visited {
+  color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1);
+}
+
+.temp_button:hover {
+  background-color: #f7f7f7;
+}
+
+.temp_text {
+  color: black;
+}
+
+.p-workspaces_list__invitations {
+  margin-bottom: 40px;
+}
+
+.p-workspaces_list > h3 {
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.p-workspaces_list__invitations h3 {
+  text-align: left;
+}
+
+.p-workspaces_list__invitations .p-workspaces_list__invitations_panel--padded {
+  padding: 20px 0 0 24px;
+}
+
+.p-workspaces_list__invitations
+  .p-workspaces_list__invitations_panel--padded:last-child {
+  padding-bottom: 20px;
+}
+
+.p-workspaces_list__invitation_join_button {
+  color: #007a5a;
+  border-color: #007a5a;
+  padding: 8px;
+  min-width: 50px;
+}
+
+.p-workspaces_list__invitation_join_button:focus,
+.p-workspaces_list__invitation_join_button:hover,
+.p-workspaces_list__invitation_join_button:link,
+.p-workspaces_list__invitation_join_button:visited {
+  color: #007a5a;
+  border-color: #007a5a;
+}
+
+.p-workspaces_list__invitations .p-workspace_info__action {
+  padding-right: 24px !important;
+}
+
+.p-workspaces_list__join_details {
+  color: rgba(var(--sk_foreground_max, 29, 28, 29), 0.7);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
+
+.p-workspaces_list__join_details .c-icon {
+  width: 13px;
+  height: 13px;
+  margin-right: 4px;
+}
+
+.p-workspaces_view__different_email {
+  text-align: center;
+}
+
+.sk_dark_gray,
+.sk_dark_grey,
+.sk_foreground_max_solid {
+  color: #616061;
+}
+
+.c-link--button {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  line-height: inherit;
+  overflow: initial;
+  padding: 0;
+  text-align: initial;
+  vertical-align: initial;
+  cursor: pointer;
+  color: rgba(var(--sk_highlight, 18, 100, 163), 1);
+  text-decoration: none;
+  vertical-align: baseline;
+}
+
+.temp_footer {
+  margin-bottom: 35px;
+}

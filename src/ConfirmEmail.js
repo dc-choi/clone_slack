@@ -1,10 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import "./ConfirmEmail.css";
+import "./css/ConfirmEmail.css";
 
 //새로고침을 누르면 /createnew 로 간다? -> signin
 //location.state.verificationCode가 없는 경우 navigate createnew
-//0들어오는 경우 생각하기
 
 function ConfirmEmail() {
   const location = useLocation();
@@ -49,12 +48,12 @@ function ConfirmEmail() {
 
   useEffect(() => {
     if (
-      !!code.one &&
-      !!code.two &&
-      !!code.three &&
-      !!code.four &&
-      !!code.five &&
-      !!code.six
+      code.one !== "" &&
+      code.two !== "" &&
+      code.three !== "" &&
+      code.four !== "" &&
+      code.five !== "" &&
+      code.six !== ""
     ) {
       if (
         code.one + code.two + code.three + code.four + code.five + code.six ===

@@ -2,8 +2,8 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ConfirmEmail from "./ConfirmEmail";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import LoginGoogle from "./LoginGoogle";
-import "./App.css";
+import Workspaces from "./Workspaces";
+import "./css/App.css";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/ConfirmEmail" element={<ConfirmEmail />} />
-        <Route path="/LoginGoogle" element={<LoginGoogle />} />
+        <Route path="/Workspace" element={<Workspaces />} />
       </Routes>
     </BrowserRouter>
   );
