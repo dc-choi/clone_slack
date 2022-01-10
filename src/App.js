@@ -2,7 +2,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ConfirmEmail from "./ConfirmEmail";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import LoginGoogle from "./LoginGoogle";
+import SetupWorkspace from "./SetupWorkspace";
 import "./App.css";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/ConfirmEmail" element={<ConfirmEmail />} />
-        <Route path="/LoginGoogle" element={<LoginGoogle />} />
+        <Route path="/SetupWorkspace" element={<SetupWorkspace />} />
       </Routes>
     </BrowserRouter>
   );

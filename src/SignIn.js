@@ -1,14 +1,45 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { FiAlertTriangle } from "react-icons/fi";
+import axios from "axios";
 import "./SignIn.css";
 import LoginGoogle from "./LoginGoogle";
 
+const rEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+const EMAIL_EMPTY = "이메일을 입력해주세요.";
+const EMAIL_INVALID = "죄송합니다. 이메일이 유효하지 않습니다.";
+
 function SignIn() {
   const [email, setEmail] = useState("");
+  const [isAlert, setIsAlert] = useState(false);
+  const [validation, setValidation] = useState("EMPTY");
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setEmail(e.target.value);
+  };
+
+  const handleValidate = () => {
+    if (rEmail.test(email)) setValidation("VALID");
+    else if (email === "") setValidation("EMPTY");
+    else setValidation("INVALID");
+  };
+  useEffect(handleValidate, [email]);
+
+  const handleContinue = (e) => {
+    e.preventDefault();
+    if (validation === "VALID") {
+      axios({
+        method: "post",
+        url: "http://192.168.0.8:9000/api/mail",
+        data: { email: email },
+      }).then(function (response) {
+        navigate("/confirmemail", {
+          state: { email: email, verificationCode: response.data.ranNum + "" },
+        });
+      });
+    } else setIsAlert(true);
   };
 
   return (
@@ -60,22 +91,79 @@ function SignIn() {
             <hr className="horizontal_content_rightLine" />
           </div>
 
-          <form className="email_signIn_form">
-            <div className="email_signIn_input">
-              <input
-                className="email_input_box"
-                type="email"
-                placeholder="name@work-email.com"
-                onChange={onChange}
-                value={email}
-              />
+          {/* 이메일로 로그인 */}
+          <form noValidate="" onSubmit={handleContinue}>
+            <div className="p-get_started_email_form">
+              <label
+                className="offscreen"
+                htmlFor="signup_email"
+                id="signup_email_label"
+                aria-hidden="true"
+              >
+                이메일 주소 입력
+              </label>
+              <div data-qa-formtext="true">
+                <input
+                  data-qa="email_field"
+                  data-email-healing="true"
+                  spellCheck="false"
+                  aria-describedby="signup_email_hint"
+                  aria-invalid="false"
+                  aria-labelledby="signup_email_label"
+                  aria-required="false"
+                  aria-label=""
+                  autoComplete="off"
+                  className={`${
+                    isAlert && validation !== "VALID" ? "margin_bottom_0" : ""
+                  } c-input_text c-input_text--large`}
+                  id="signup_email"
+                  name="email"
+                  placeholder="name@work-email.com"
+                  type="email"
+                  value={email}
+                  onChange={onChange}
+                />
+              </div>
+              {isAlert && validation !== "VALID" ? (
+                <div
+                  className="c-alert c-alert--nested_box c-alert--level_error c-alert--align_left margin_bottom_100"
+                  id="signup_email_error"
+                  data-qa-alert="true"
+                  data-qa-alert-level="error"
+                  data-qa-alert-type="nested_box"
+                  data-qa-alert-align="left"
+                >
+                  <i
+                    className="c-icon c-alert__icon c-icon--warning c-icon--inherit c-icon--inline"
+                    type="warning"
+                    data-qa-alert-icon="true"
+                    data-qa-alert-icon-type="warning"
+                    aria-hidden="true"
+                  >
+                    <FiAlertTriangle color="red" size="17" />
+                  </i>
+                  <span
+                    className="c-alert__message"
+                    data-qa-alert-message="true"
+                  >
+                    {isAlert && validation === "INVALID" && EMAIL_INVALID}
+                    {isAlert && validation === "EMPTY" && EMAIL_EMPTY}
+                  </span>
+                </div>
+              ) : null}
 
-              <button className="email_login_box">이메일로 로그인</button>
+              <button
+                className="c-button c-button--outline c-button--large p-get_started_email_form__button p-get_started_aubergine_button"
+                id="submit_btn"
+                data-style="expand-right"
+                data-qa="submit_button"
+                type="submit"
+              >
+                이메일로 로그인
+              </button>
             </div>
           </form>
         </div>
-
-        <div></div>
       </div>
     </div>
   );
