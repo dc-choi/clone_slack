@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import axios from "axios";
-import "./SignUp.css";
+import "./css/SignUp.css";
 
 const ALERT_EMPTY = "이는 필수이며 이메일을 입력해야 합니다.";
 const ALERT_INVALID = "이메일 주소가 유효하지 않은 것 같습니다.";
@@ -26,7 +26,7 @@ function SignUp() {
     if (validation === "VALID") {
       axios({
         method: "post",
-        url: "http://192.168.0.8:9000/api/mail",
+        url: "http://localhost:9000/api/mail",
         data: { email: email },
       }).then(function (response) {
         navigate("/confirmemail", {
