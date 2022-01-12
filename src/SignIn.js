@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import axios from "axios";
-import "./SignIn.css";
-import LoginGoogle from "./LoginGoogle";
+import "./css/SignIn.css";
+import LoginGoogle from "./components/LoginGoogle";
 
 const rEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 const EMAIL_EMPTY = "이메일을 입력해주세요.";

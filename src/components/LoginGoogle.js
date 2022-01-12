@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import "./LoginGoogle.css";
+import "../css/LoginGoogle.css";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 

@@ -3,7 +3,8 @@ import ConfirmEmail from "./ConfirmEmail";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SetupWorkspace from "./SetupWorkspace";
-import "./App.css";
+import Workspaces from "./Workspaces";
+import "./css/App.css";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/ConfirmEmail" element={<ConfirmEmail />} />
         <Route path="/SetupWorkspace" element={<SetupWorkspace />} />
+        <Route path="/Workspace" element={<Workspaces />} />
       </Routes>
     </BrowserRouter>
   );
