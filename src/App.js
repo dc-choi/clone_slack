@@ -13,8 +13,8 @@ function App() {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/ConfirmEmail" element={<ConfirmEmail />} />
+        <Route path="/Workspaces" element={<Workspaces />} />
         <Route path="/SetupWorkspace" element={<SetupWorkspace />} />
-        <Route path="/Workspace" element={<Workspaces />} />
       </Routes>
     </BrowserRouter>
   );

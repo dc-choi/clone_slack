@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
-import { HiArrowSmRight } from "react-icons/hi";
 import { BiEnvelope } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import "./css/Workspace.css";
+import WorkspaceList from "./components/WorkspaceList";
+import InvitedList from "./components/InvitedList";
 //새로운 이메일로 로그인한 상황에 보이는 페이지
-// 워크스페이스 5개 넘어가면 생략할지 말지
-//컴포넌트 분리 필요
 const workspace_objs = [
-  //임시값
   {
     id: 0,
     title: "[5.2]42s_Piscine",
@@ -36,11 +34,7 @@ const email = "su1715@sookmyung.ac.kr"; //임시값
 function Workspaces() {
   const [hoverlist, setHoverlist] = useState([]);
   const resetHoverlist = () => {
-    const arr = [];
-    for (let i = 0; i < workspace_objs.length; i++) {
-      arr[i] = false;
-    }
-    setHoverlist(arr);
+    setHoverlist(workspace_objs.map(() => false));
   };
   useEffect(() => {
     resetHoverlist();
@@ -53,109 +47,9 @@ function Workspaces() {
       );
     }
   };
-  const handleMouseLeave = (e) => {
+  const handleMouseLeave = () => {
     resetHoverlist();
   };
-  const makeWorkspacePanel = (obj) => {
-    return (
-      <div
-        id={obj.id}
-        data-kind="workspace_link"
-        className="c-link p-workspaces_list__link"
-        onMouseOver={handleMouseOver}
-        onMouseLeave={handleMouseLeave}
-      >
-        <Link to="/">
-          <div className="p-workspace_info">
-            <div className="p-workspace_info__icon">
-              <i
-                className="c-team_icon p-workspace_info__team_icon c-team_icon--default"
-                role="img"
-                aria-label="Slack"
-                style={{
-                  height: "44px",
-                  width: "44px",
-                  minWidth: "44px",
-                  fontSize: "24px",
-                  lineHeight: "44px",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {obj.title[0]}
-              </i>
-            </div>
-            <div className="p-workspace_info__content">
-              <div className="p-workspace_info__title">{obj.title}</div>
-              <div className="p-workspace_info__members">
-                <div className="count">{obj.pesonnel}명의 멤버</div>
-              </div>
-            </div>
-            <div className="p-workspace_info__action">
-              <span
-                className={`p-workspaces_list__link_icon_text ${
-                  hoverlist[obj.id] && "visible"
-                }`}
-              >
-                열기
-              </span>
-              <HiArrowSmRight size="25" />
-            </div>
-          </div>
-        </Link>
-      </div>
-    );
-  };
-  const makeWorkspaceList = (() => {
-    return workspace_objs.map((obj) => (
-      <div key={obj.id}>
-        {makeWorkspacePanel(obj)}
-        <hr
-          data-qa="workspace_list_divider"
-          className="p-workspaces_list__workspaces_list_divider"
-        />
-      </div>
-    ));
-  })();
-  const makeInvitedPanel = (obj) => {
-    return (
-      <div className="p-workspace_info" key={obj.id}>
-        <div className="p-workspace_info__icon">
-          <i
-            className="c-team_icon p-workspace_info__team_icon c-team_icon--default"
-            role="img"
-            style={{
-              height: "44px",
-              width: "44px",
-              minWidth: "44px",
-              fontSize: "24px",
-              lineHeight: "44px",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {obj.title[0]}
-          </i>
-        </div>
-        <div className="p-workspace_info__content">
-          <div className="p-workspace_info__title">{obj.title}</div>
-          <div className="p-workspace_info__members">
-            <div className="count">{obj.personnel}명의 멤버</div>
-          </div>
-        </div>
-        <div className="p-workspace_info__action">
-          <Link
-            to="/"
-            className="c-link c-button c-button--outline c-button--medium p-workspaces_list__invitation_join_button temp_button"
-          >
-            참여
-            <span aria-label="(opens in new tab)"></span>
-          </Link>
-        </div>
-      </div>
-    );
-  };
-  const makeInvitedList = (() => {
-    return invited_objs.map((obj) => makeInvitedPanel(obj));
-  })();
 
   return (
     <div id="get_started_app_root" className="get-started-app-root">
@@ -194,20 +88,13 @@ function Workspaces() {
                 </div>
                 <div className="p-expanding_workspace_list">
                   <div className="p-expanding_workspace_list__workspaces">
-                    {makeWorkspaceList}
+                    <WorkspaceList
+                      workspace_objs={workspace_objs}
+                      handleMouseLeave={handleMouseLeave}
+                      handleMouseOver={handleMouseOver}
+                      hoverlist={hoverlist}
+                    />
                   </div>
-                  {/* <button
-                    className="c-button-unstyled p-expanding_workspace_list__expander"
-                    data-qa="expand_workspace_list"
-                    type="button"
-                  >
-                    워크스페이스 3개 더 표시
-                    <i
-                      className="c-icon c-icon--chevron-down"
-                      type="chevron-down"
-                      aria-hidden="true"
-                    ></i>
-                  </button> */}
                 </div>
               </div>
             </section>
@@ -234,7 +121,7 @@ function Workspaces() {
               <div className="p-workspaces_list__panel">
                 <div className="p-workspaces_list__panel_subtitle">
                   <h4>
-                    <strong>su1715@sookmyung.ac.kr</strong>에 대한 초대
+                    <strong>{email}</strong>에 대한 초대
                   </h4>
                 </div>
                 <div className="p-workspaces_list__joins p-workspaces_list__invitations_panel--padded">
@@ -249,26 +136,13 @@ function Workspaces() {
                           <BiEnvelope size="14" />
                         </div>
                         <span className="invited_by">
-                          @sookmyung.ac.kr 님이 초대한 사용자는 모두 참여할 수
-                          있음
+                          {email} 님이 초대한 사용자는 모두 참여할 수 있음
                         </span>
                       </div>
                     </div>
                     <div className="p-expanding_workspace_list__workspaces">
-                      {makeInvitedList}
+                      <InvitedList invited_objs={invited_objs} />
                     </div>
-                    {/* <button
-                      className="c-button-unstyled p-expanding_workspace_list__expander"
-                      data-qa="expand_workspace_list"
-                      type="button"
-                    >
-                      워크스페이스 18개 더 표시
-                      <i
-                        className="c-icon c-icon--chevron-down"
-                        type="chevron-down"
-                        aria-hidden="true"
-                      ></i>
-                    </button> */}
                   </div>
                 </div>
               </div>
