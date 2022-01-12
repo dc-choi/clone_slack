@@ -12,7 +12,7 @@ function App() {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/ConfirmEmail" element={<ConfirmEmail />} />
-        <Route path="/Workspace" element={<Workspaces />} />
+        <Route path="/Workspaces" element={<Workspaces />} />
       </Routes>
     </BrowserRouter>
   );
