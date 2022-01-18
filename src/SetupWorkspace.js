@@ -6,8 +6,15 @@ function SetupWorkspace() {
   const [value, setValue] = useState("새 워크스페이스");
   const [charcount, setCharCount] = useState(50);
   const [isAlert, setIsAlert] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
-  // input클릭시, charcount보여짐
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleInputFocus = () => {
+    setIsVisible(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsVisible(false);
+  };
 
   const onChange = (e) => {
     const lencount = e.target.value.length;
@@ -106,7 +113,7 @@ function SetupWorkspace() {
                       data-qa="team_setup_step_counter"
                       className="p-setup_page__steps_counter"
                     >
-                      1/3단계
+                      1/2단계
                     </div>
                     {/* 2/3단계, 3/3단계 */}
                     <div className="p-autoclog__hook">
@@ -144,19 +151,25 @@ function SetupWorkspace() {
                               type="text"
                               value={value}
                               onChange={onChange}
+                              onFocus={handleInputFocus}
+                              onBlur={handleInputBlur}
                               style={{ paddingRight: "42px" }}
                             />
-                            <div
-                              aria-hidden="true"
-                              className="c-input_character_count__characters-remaining"
-                              style={
-                                charcount > -1
-                                  ? { color: "gray" }
-                                  : { color: "#e01e5a" }
-                              }
-                            >
-                              {charcount}
-                            </div>
+
+                            {isVisible ? (
+                              <div
+                                aria-hidden="true"
+                                className="c-input_character_count__characters-remaining"
+                                style={
+                                  charcount > -1
+                                    ? { color: "gray" }
+                                    : { color: "#e01e5a" }
+                                }
+                              >
+                                {charcount}
+                              </div>
+                            ) : null}
+
                             {isAlert ? (
                               <div
                                 className="c-alert c-alert--nested_box c-alert--level_error c-alert--align_left margin_bottom_100"
