@@ -20,6 +20,7 @@ function SignIn() {
     setEmail(e.target.value);
   };
 
+  // 오류: 이메일 @ 전에만 입력했을 때 알림 안뜸
   const handleValidate = () => {
     if (rEmail.test(email)) setValidation("VALID");
     else if (email === "") setValidation("EMPTY");
@@ -105,12 +106,12 @@ function SignIn() {
               <div data-qa-formtext="true">
                 <input
                   data-qa="email_field"
-                  data-email-healing="true"
+                  // data-email-healing="true"
                   spellCheck="false"
                   aria-describedby="signup_email_hint"
                   aria-invalid="false"
                   aria-labelledby="signup_email_label"
-                  aria-required="false"
+                  aria-required="true"
                   aria-label=""
                   autoComplete="off"
                   className={`${
