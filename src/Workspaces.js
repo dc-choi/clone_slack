@@ -108,7 +108,7 @@ function Workspaces() {
                 다른 팀과 Slack을 사용하고 싶으세요?
               </span>
               <div className="c-link c-button c-button--outline c-button--medium p-create_workspace_banner__button temp_button">
-                <Link to="/" className="temp_text">
+                <Link to="/SetupWorkspace" className="temp_text">
                   다른 워크스페이스 만들기
                 </Link>
               </div>
