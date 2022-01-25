@@ -1,0 +1,63 @@
+.full_width {
+  width: 100%;
+  max-width: 100%;
+}
+.c-google_login {
+  background-color: #fff !important;
+  border: 2px solid #4285f4 !important;
+  border-radius: 4px !important;
+  color: #4285f4 !important;
+}
+.c-third_party_auth {
+  display: flex;
+  padding: 0;
+}
+
+.c-button--large {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  height: 50px !important;
+  min-width: 96px !important;
+}
+.c-button--primary {
+  transition: all 80ms linear !important;
+  background: #007a5a;
+  box-shadow: none !important;
+}
+.c-button,
+.c-button:active,
+.c-button:focus,
+.c-button:hover {
+  text-decoration: none;
+}
+.c-button {
+  user-select: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+button {
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  margin: 0em;
+}

@@ -7,6 +7,11 @@
   font-family: NotoSansKR, Slack-Lato, appleLogo, sans-serif;
 }
 
+.App-header {
+  align-items: center;
+  text-align: center;
+}
+
 header {
   padding: 48px 0 40px;
   width: 100%;
@@ -71,50 +76,6 @@ header {
   box-sizing: inherit;
 }
 
-.g-signin2 {
-  user-select: none;
-  outline: none;
-  cursor: pointer;
-  align-items: center;
-  position: relative;
-  justify-content: center;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-appearance: none;
-  -webkit-tap-highlight-color: transparent;
-
-  display: flex;
-  padding: 0;
-
-  height: 44px;
-  width: 100%;
-  max-width: 100%;
-  min-width: 96px;
-
-  /* 버튼 */
-  background-color: #fff;
-  border: 2px solid #4285f4;
-  border-radius: 4px;
-
-  /* 폰트 */
-  color: #4285f4;
-  font-size: 18px;
-  font-weight: 900;
-}
-
-/* button {
-  user-select: none;
-  outline: none;
-  cursor: pointer;
-  align-items: center;
-  position: relative;
-  justify-content: center;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-appearance: none;
-  -webkit-tap-highlight-color: transparent;
-} */
-
 .horizontal_content_line_rule {
   display: flex;
   box-sizing: inherit;
@@ -158,34 +119,163 @@ hr {
   margin: 0;
 }
 
-.email_input_box {
-  margin-bottom: 20px;
+.p-get_started_email_form {
+  min-width: 376px;
 }
 
-.email_login_box {
-  color: #fff;
-  background-color: #4a154b;
+.offscreen {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  user-select: none;
+}
+
+.p-get_started_email_form input.c-input_text--with_inline_alert:not(:focus) {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+input.c-input_text.c-input_text--large,
+input[type="text"].c-input_text.c-input_text--large,
+input[type="password"].c-input_text.c-input_text--large {
+  padding: 11px 12px 13px;
+  height: 44px;
+  font-size: 18px;
+  line-height: 1.33333333;
+}
+
+.c-input_text--with_inline_alert,
+.c-input_text--with_inline_alert.c-input_text--with_error {
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+input.c-input_text--with_inline_alert,
+input.c-input_text--with_inline_alertinput.c-input_text--with_error,
+input.c-input_text--with_inline_alertinput[type="text"].c-input_text--with_error,
+input.c-input_text--with_inline_alertinput[type="password"].c-input_text--with_error,
+input[type="text"].c-input_text--with_inline_alert,
+input[type="text"].c-input_text--with_inline_alertinput.c-input_text--with_error,
+input[type="text"].c-input_text--with_inline_alertinput[type="text"].c-input_text--with_error,
+input[type="text"].c-input_text--with_inline_alertinput[type="password"].c-input_text--with_error,
+input[type="password"].c-input_text--with_inline_alert,
+input[type="password"].c-input_text--with_inline_alertinput.c-input_text--with_error,
+input[type="password"].c-input_text--with_inline_alertinput[type="text"].c-input_text--with_error,
+input[type="password"].c-input_text--with_inline_alertinput[type="password"].c-input_text--with_error {
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+input.c-input_text--with_error,
+input[type="text"].c-input_text--with_error,
+input[type="password"].c-input_text--with_error {
+  border: 1px solid #e01e5a;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
+}
+
+input.c-input_text,
+input[type="text"].c-input_text,
+input[type="password"].c-input_text {
+  border-radius: 4px;
+  border: 1px solid rgba(29, 28, 29, 0.3);
+  transition: border 80ms ease-out, box-shadow 80ms ease-out;
+  box-sizing: border-box;
+  margin: 0 0 20px;
+  padding: 3px 12px 5px;
+  height: 36px;
+  width: 100%;
+  font-size: 15px;
+  line-height: 1.86666667;
+  line-height: normal;
+}
+
+.c-input_text--with_inline_alert {
+  border-color: #e01e5a;
+}
+
+.c-input_text--large {
+  padding: 12px;
+  height: 44px;
+  padding-top: 11px;
+  padding-bottom: 13px;
+  font-size: 18px;
+  line-height: 1.33333333;
+}
+.c-input_text--with_error {
+  border: 1px solid #e01e5a;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
+}
+.c-input_text {
+  border-radius: 4px;
+  --saf-0: rgba(var(--sk_primary_foreground, 29, 28, 29), 0.3);
+  border: 1px solid var(--saf-0);
+  transition: border 80ms ease-out, box-shadow 80ms ease-out;
+  box-sizing: border-box;
+  margin: 0 0 20px;
+  padding: 4px 12px;
+  height: 36px;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  width: 100%;
+  font-size: 15px;
+  line-height: 1.86666667;
+  line-height: normal;
+  color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1);
+  background-color: rgba(var(--sk_primary_background, 255, 255, 255), 1);
+}
+
+.c-button--outline.c-button--disabled,
+.c-button--outline.c-button--disabled:active,
+.c-button--outline.c-button--disabled:hover {
+  box-shadow: none;
+}
+
+.p-get_started_aubergine_button {
+  color: #fff !important;
+  background-color: #4a154b !important;
   border: none;
+}
+
+.p-get_started_email_form__button {
   margin-bottom: 20px;
   width: 100%;
+}
+
+.c-button--disabled {
+  transition: all 80ms linear;
+  background: rgba(var(--sk_foreground_low_solid, 221, 221, 221), 1);
+  cursor: default;
+  pointer-events: none;
+  text-shadow: none;
+  background-clip: initial;
+}
+
+.c-button--large {
   font-size: 18px;
   font-weight: 900;
   height: 44px;
   min-width: 96px;
   padding: 0 16px 3px;
-  transition: all 80ms linear;
-  --saf-0: rgba(var(--sk_primary_foreground, 29, 28, 29), 0.3);
-  background-clip: padding-box;
-  text-decoration: none;
+}
+
+.c-button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+  cursor: pointer;
+  border: none;
   border-radius: 4px;
-  align-items: center;
-  position: relative;
-  display: inline-flex;
-  justify-content: center;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-appearance: none;
-  -webkit-tap-highlight-color: transparent;
   align-items: center;
   position: relative;
   display: inline-flex;
