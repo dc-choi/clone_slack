@@ -15,8 +15,8 @@ function LoginGoogle() {
       method: "post",
       url: "http://localhost:9000/api/auth/googleLogin",
       data: {
-        profileObj: "res.profileObj",
-        tokenObj: "res.tokenObj",
+        profileObj: res.profileObj,
+        tokenObj: res.tokenObj,
       },
     })
       .then((res) => {
