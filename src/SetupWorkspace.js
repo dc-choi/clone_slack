@@ -45,7 +45,7 @@ function SetupWorkspace() {
     navigate("/setUpChannel");
   };
 
-  // 입력된 워크스페이스 이름 db저장
+  //입력된 워크스페이스 이름 db저장
   // const handleContinue = (e) => {
   //   e.preventDefault();
   //   if(validation === "VALID") {
