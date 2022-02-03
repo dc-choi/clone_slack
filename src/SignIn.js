@@ -16,11 +16,6 @@ function SignIn() {
   const [validation, setValidation] = useState("EMPTY");
   const navigate = useNavigate();
 
-  const onChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  // 오류: 이메일 @ 전에만 입력했을 때 알림 안뜸
   const handleValidate = () => {
     if (rEmail.test(email)) setValidation("VALID");
     else if (email === "") setValidation("EMPTY");
@@ -122,7 +117,7 @@ function SignIn() {
                   placeholder="name@work-email.com"
                   type="email"
                   value={email}
-                  onChange={onChange}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               {isAlert && validation !== "VALID" ? (

@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 import "./css/SetupWorkspace.css";
 
 function SetupWorkspace() {
-  const [value, setValue] = useState("새 워크스페이스");
+  const [teamName, setTeamName] = useState("새 워크스페이스");
   const [charcount, setCharCount] = useState(50);
   const [isAlert, setIsAlert] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [validation, setValidation] = useState("VALID");
+  const navigate = useNavigate();
 
   const handleInputFocus = () => {
     setIsVisible(true);
@@ -16,17 +20,46 @@ function SetupWorkspace() {
     setIsVisible(false);
   };
 
-  const onChange = (e) => {
+  const handleValidate = (e) => {
     const lencount = e.target.value.length;
     const maxLength = 50;
-    setValue(e.target.value);
+
+    setTeamName(e.target.value);
     setCharCount(maxLength - lencount);
+
     if (lencount > maxLength) {
       setIsAlert(true);
+      setValidation("INVALID");
+    } else if (lencount === 0) {
+      setValidation("EMPTY");
     } else {
       setIsAlert(false);
+      setValidation("VALID");
     }
   };
+  useEffect(() => {
+    console.log(`ws_name: ${teamName}`);
+  }, [teamName]);
+
+  const GotoSetupChannel = (e) => {
+    navigate("/setUpChannel");
+  };
+
+  // 입력된 워크스페이스 이름 db저장
+  // const handleContinue = (e) => {
+  //   e.preventDefault();
+  //   if(validation === "VALID") {
+  //     axios({
+  //       method: "post",
+  //       url: "",
+  //       data: { ws_name: teamName},
+  //     }).then({
+  //       navigate("/SetupChannel", {
+  //         state: {ws_name: teamName},
+  //       });
+  //     });
+  //   };
+  // };
 
   return (
     <div className="app_root">
@@ -50,8 +83,9 @@ function SetupWorkspace() {
                   >
                     <div className="p-ia__sidebar_header__info">
                       <div className="p-ia__sidebar_header__team_name">
+                        {/* 워크스페이스 이름 */}
                         <span className="p-ia__sidebar_header__team_name_text">
-                          {value}
+                          {teamName}
                         </span>
                       </div>
                     </div>
@@ -149,8 +183,8 @@ function SetupWorkspace() {
                               name="team-name"
                               placeholder="예: Acme 마케팅 또는 Acme"
                               type="text"
-                              value={value}
-                              onChange={onChange}
+                              value={teamName}
+                              onChange={handleValidate}
                               onFocus={handleInputFocus}
                               onBlur={handleInputBlur}
                               style={{ paddingRight: "42px" }}
@@ -170,7 +204,7 @@ function SetupWorkspace() {
                               </div>
                             ) : null}
 
-                            {isAlert ? (
+                            {isAlert && validation === "INVALID" ? (
                               <div
                                 className="c-alert c-alert--nested_box c-alert--level_error c-alert--align_left margin_bottom_100"
                                 id="setup-page-team-name_error"
@@ -203,6 +237,13 @@ function SetupWorkspace() {
                           data-qa="setup-page-team-name-submit"
                           aria-label="다음 단계로 이동"
                           type="submit"
+                          disabled={`${
+                            (isAlert && validation === "INVALID") ||
+                            validation === "EMPTY"
+                              ? "disabled"
+                              : ""
+                          }`}
+                          onClick={GotoSetupChannel}
                         >
                           다음
                         </button>
