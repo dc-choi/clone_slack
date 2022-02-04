@@ -519,6 +519,10 @@ input {
   margin-top: 48px;
 }
 
+.margin_right {
+  margin-right: 20px;
+}
+
 .p-setup_page__content_button--aubergine {
   background-color: #4a154b;
 }

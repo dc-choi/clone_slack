@@ -1,15 +1,18 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+
 import "./css/SetupWorkspace.css";
 
 function SetupChannel() {
   const [teamName, setTeamName] = useState("새 워크스페이스");
   const [channelName, setChannelName] = useState("");
-  const [charcount, setCharCount] = useState(10);
+  const [charcount, setCharCount] = useState(80);
   const [isAlert, setIsAlert] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [validation, setValidation] = useState("EMPTY");
+  const navigate = useNavigate();
 
   const handleInputFocus = () => {
     setIsVisible(true);
@@ -21,7 +24,7 @@ function SetupChannel() {
 
   const handleValidate = (e) => {
     const lencount = e.target.value.length;
-    const maxLength = 10;
+    const maxLength = 80;
 
     setChannelName(e.target.value);
     setCharCount(maxLength - lencount);
@@ -39,6 +42,10 @@ function SetupChannel() {
   useEffect(() => {
     console.log(`ch_name: ${channelName}`);
   }, [channelName]);
+
+  const GotoSetupWorkspace = (e) => {
+    navigate("/setUpWorkspace");
+  };
 
   //입력된 워크스페이스 이름 db저장
   // const handleContinue = (e) => {
@@ -262,13 +269,21 @@ function SetupChannel() {
                                   className="c-alert__message"
                                   data-qa-alert-message="true"
                                 >
-                                  10 자까지만 입력할 수 있습니다.
+                                  80 자까지만 입력할 수 있습니다.
                                 </span>
                               </div>
                             ) : null}
                           </div>
                         </div>
-                        <button>이전</button>
+                        <button
+                          className="c-button c-button--primary c-button--large p-setup_page__content_button p-setup_page__content_button--aubergine margin_top_300 margin_right"
+                          data-qa="setup-page-team-name-submit"
+                          aria-label="이전 단계로 이동"
+                          type="submit"
+                          onClick={GotoSetupWorkspace}
+                        >
+                          이전
+                        </button>
                         <button
                           className="c-button c-button--primary c-button--large p-setup_page__content_button p-setup_page__content_button--aubergine margin_top_300"
                           data-qa="setup-page-team-name-submit"

@@ -6,12 +6,13 @@ import "./css/SetupWorkspace.css";
 
 function SetupWorkspace() {
   const [teamName, setTeamName] = useState("새 워크스페이스");
-  const [charcount, setCharCount] = useState(10);
+  const [charcount, setCharCount] = useState(42);
   const [isAlert, setIsAlert] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [validation, setValidation] = useState("VALID");
   const navigate = useNavigate();
 
+  // input박스 눌렀을 시에만 카운트 보이게
   const handleInputFocus = () => {
     setIsVisible(true);
   };
@@ -20,9 +21,10 @@ function SetupWorkspace() {
     setIsVisible(false);
   };
 
+  // 유효한 카운트 함수
   const handleValidate = (e) => {
     const lencount = e.target.value.length;
-    const maxLength = 10;
+    const maxLength = 50;
 
     setTeamName(e.target.value);
     setCharCount(maxLength - lencount);
@@ -234,7 +236,7 @@ function SetupWorkspace() {
                                   className="c-alert__message"
                                   data-qa-alert-message="true"
                                 >
-                                  10 자까지만 입력할 수 있습니다.
+                                  50 자까지만 입력할 수 있습니다.
                                 </span>
                               </div>
                             ) : null}
