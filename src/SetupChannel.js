@@ -6,7 +6,7 @@ import "./css/SetupWorkspace.css";
 function SetupChannel() {
   const [teamName, setTeamName] = useState("새 워크스페이스");
   const [channelName, setChannelName] = useState("");
-  const [charcount, setCharCount] = useState(50);
+  const [charcount, setCharCount] = useState(10);
   const [isAlert, setIsAlert] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [validation, setValidation] = useState("EMPTY");
@@ -21,7 +21,7 @@ function SetupChannel() {
 
   const handleValidate = (e) => {
     const lencount = e.target.value.length;
-    const maxLength = 80;
+    const maxLength = 10;
 
     setChannelName(e.target.value);
     setCharCount(maxLength - lencount);
@@ -123,7 +123,7 @@ function SetupChannel() {
                                   <div className="p-channel_sidebar__section_heading p-channel_sidebar__section_heading--setup-sidebar margin_top_200">
                                     <div
                                       className="p-channel_sidebar__section_heading_label p-channel_sidebar__section_heading_label--setup"
-                                      tabindex="0"
+                                      tabIndex="0"
                                       role="presentation"
                                       aria-label="선택한 채널 섹션"
                                     >
@@ -134,7 +134,7 @@ function SetupChannel() {
                                 {/* ... */}
                                 <div
                                   className="c-virtual_list__item"
-                                  tabindex="-1"
+                                  tabIndex="-1"
                                   role="listitem"
                                   id="56193dcc-0ab0-4cff-a2e2-dd2de86b166b"
                                   data-qa="virtual-list-item"
@@ -262,12 +262,13 @@ function SetupChannel() {
                                   className="c-alert__message"
                                   data-qa-alert-message="true"
                                 >
-                                  80 자까지만 입력할 수 있습니다.
+                                  10 자까지만 입력할 수 있습니다.
                                 </span>
                               </div>
                             ) : null}
                           </div>
                         </div>
+                        <button>이전</button>
                         <button
                           className="c-button c-button--primary c-button--large p-setup_page__content_button p-setup_page__content_button--aubergine margin_top_300"
                           data-qa="setup-page-team-name-submit"

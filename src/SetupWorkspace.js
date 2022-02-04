@@ -6,7 +6,7 @@ import "./css/SetupWorkspace.css";
 
 function SetupWorkspace() {
   const [teamName, setTeamName] = useState("새 워크스페이스");
-  const [charcount, setCharCount] = useState(50);
+  const [charcount, setCharCount] = useState(10);
   const [isAlert, setIsAlert] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [validation, setValidation] = useState("VALID");
@@ -22,7 +22,7 @@ function SetupWorkspace() {
 
   const handleValidate = (e) => {
     const lencount = e.target.value.length;
-    const maxLength = 50;
+    const maxLength = 10;
 
     setTeamName(e.target.value);
     setCharCount(maxLength - lencount);
@@ -41,7 +41,15 @@ function SetupWorkspace() {
     console.log(`ws_name: ${teamName}`);
   }, [teamName]);
 
+  // workspaceName localstorage에 저장
+  const saveWorkspaceName = () => {
+    const workspaceName = { ws_name: teamName };
+    window.localStorage.setItem("ws_name", JSON.stringify(workspaceName));
+  };
+
   const GotoSetupChannel = (e) => {
+    saveWorkspaceName(e);
+    // window.localStorage.getItem("teamName");
     navigate("/setUpChannel");
   };
 
@@ -226,7 +234,7 @@ function SetupWorkspace() {
                                   className="c-alert__message"
                                   data-qa-alert-message="true"
                                 >
-                                  50 자까지만 입력할 수 있습니다.
+                                  10 자까지만 입력할 수 있습니다.
                                 </span>
                               </div>
                             ) : null}
