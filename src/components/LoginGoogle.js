@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../css/LoginGoogle.css";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
@@ -11,6 +11,11 @@ function LoginGoogle() {
 
   // 서버 요청
   const onLoginSuccess = (res) => {
+    // 브라우저 상에서 로그인한 사용자 이름 저장
+    // => 로그인 후에 워크스페이스 만드는 사용자 이름 저장 위함
+    const userName = { name: res.profileObj.name };
+    window.localStorage.setItem("userName", JSON.stringify(userName));
+    // window.localStorage.getItem("userName");
     axios({
       method: "post",
       url: "http://localhost:9000/api/auth/googleLogin",

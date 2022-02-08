@@ -2,17 +2,18 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+
 import "./css/SetupWorkspace.css";
 
-function SetupWorkspace() {
+function SetupChannel() {
   const [teamName, setTeamName] = useState("새 워크스페이스");
-  const [charcount, setCharCount] = useState(42);
+  const [channelName, setChannelName] = useState("");
+  const [charcount, setCharCount] = useState(80);
   const [isAlert, setIsAlert] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [validation, setValidation] = useState("VALID");
+  const [validation, setValidation] = useState("EMPTY");
   const navigate = useNavigate();
 
-  // input박스 눌렀을 시에만 카운트 보이게
   const handleInputFocus = () => {
     setIsVisible(true);
   };
@@ -21,12 +22,11 @@ function SetupWorkspace() {
     setIsVisible(false);
   };
 
-  // 유효한 카운트 함수
   const handleValidate = (e) => {
     const lencount = e.target.value.length;
-    const maxLength = 50;
+    const maxLength = 80;
 
-    setTeamName(e.target.value);
+    setChannelName(e.target.value);
     setCharCount(maxLength - lencount);
 
     if (lencount > maxLength) {
@@ -40,19 +40,11 @@ function SetupWorkspace() {
     }
   };
   useEffect(() => {
-    console.log(`ws_name: ${teamName}`);
-  }, [teamName]);
+    console.log(`ch_name: ${channelName}`);
+  }, [channelName]);
 
-  // workspaceName localstorage에 저장
-  const saveWorkspaceName = () => {
-    const workspaceName = { ws_name: teamName };
-    window.localStorage.setItem("ws_name", JSON.stringify(workspaceName));
-  };
-
-  const GotoSetupChannel = (e) => {
-    saveWorkspaceName(e);
-    // window.localStorage.getItem("teamName");
-    navigate("/setUpChannel");
+  const GotoSetupWorkspace = (e) => {
+    navigate("/setUpWorkspace");
   };
 
   //입력된 워크스페이스 이름 db저장
@@ -125,7 +117,51 @@ function SetupWorkspace() {
                               className="c-virtual_list__scroll_container"
                               role="list"
                               aria-label="선택한 채널 검색"
-                            ></div>
+                            >
+                              <div
+                                className="c-virtual_list__item"
+                                tabIndex={0}
+                                role="listitem"
+                                id="channel-heading"
+                                data-qa="virtual-list-item"
+                                style={{ top: "0px" }}
+                              >
+                                <div className="p-channel_sidebar__static_list__item">
+                                  <div className="p-channel_sidebar__section_heading p-channel_sidebar__section_heading--setup-sidebar margin_top_200">
+                                    <div
+                                      className="p-channel_sidebar__section_heading_label p-channel_sidebar__section_heading_label--setup"
+                                      tabIndex="0"
+                                      role="presentation"
+                                      aria-label="선택한 채널 섹션"
+                                    >
+                                      채널
+                                    </div>
+                                  </div>
+                                </div>
+                                {/* ... */}
+                                <div
+                                  className="c-virtual_list__item"
+                                  tabIndex="-1"
+                                  role="listitem"
+                                  id="56193dcc-0ab0-4cff-a2e2-dd2de86b166b"
+                                  data-qa="virtual-list-item"
+                                  style={{ top: "68px" }}
+                                >
+                                  <div
+                                    className="p-channel_sidebar__static_list__item"
+                                    data-qa="team_setup_sidebar_channel_link_project"
+                                  >
+                                    <div className="p-channel_sidebar__channel p-channel_sidebar__channel--setup">
+                                      <span className="p-channel_sidebar__name">
+                                        # {channelName}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* ... */}
+                              </div>
+                            </div>
                           </div>
                         </div>
                         <div role="presentation" className="c-scrollbar__track">
@@ -145,11 +181,9 @@ function SetupWorkspace() {
             {/* 워크스페이스 셋업단 */}
             <div
               role="main"
-              aria-label="팀 이름 설정"
+              aria-label="채널 설정"
               className="p-workspace__primary_view"
             >
-              {/* 버튼 누를 때마다 바뀜
-       aria-label = "팀 이름 설정", "채널 설정", "초대 설정" */}
               <div className="p-workspace__primary_view_contents">
                 <div className="p-setup_page">
                   <div className="p-setup_page__content">
@@ -157,21 +191,20 @@ function SetupWorkspace() {
                       data-qa="team_setup_step_counter"
                       className="p-setup_page__steps_counter"
                     >
-                      1/2단계
+                      2/2단계
                     </div>
-                    {/* 2/3단계, 3/3단계 */}
                     <div className="p-autoclog__hook">
-                      <h2 className="p-setup_page__header p-setup_page__header--has-subheader">
-                        회사 또는 팀 이름이 어떻게 됩니까?
-                      </h2>
-                      <p className="p-setup_page__subheader p-setup_page__subheader--deprecated-margin">
-                        Slack 워크스페이스의 이름이 됩니다. 팀이 인식할 수 있는
-                        이름을 입력하세요.
-                      </p>
                       <form>
-                        <span id="team-name-input-desc" className="offscreen">
-                          Slack 워크스페이스를 생성하려면 회사나 팀 이름을
-                          입력하세요.
+                        <h2 className="p-setup_page__header p-setup_page__header--has-subheader">
+                          현재 고객님의 팀은 어떤 일을 진행하고 계시나요?
+                        </h2>
+                        <p className="p-setup_page__subheader p-setup_page__subheader--deprecated-margin">
+                          프로젝트, 캠페인, 이벤트 또는 성사하려는 거래 등
+                          무엇이든 될 수 있습니다.
+                        </p>
+
+                        <span id="channels-input-desc" className="offscreen">
+                          프로젝트 이름, 예: Q4 예산, 가을 캠페인
                         </span>
                         <div data-qa-formtext="true">
                           <div
@@ -180,8 +213,8 @@ function SetupWorkspace() {
                             data-qa="input_character_count"
                           >
                             <input
-                              data-qa="setup-page-team-name-input"
-                              aria-describedby="team-name-input-desc setup-page-team-name_hint setup-page-team-name_character-count"
+                              data-qa="team_setup_channel_name_input"
+                              aria-describedby="channels-input-desc setup-channel-name-input_hint setup-channel-name-input_character-count"
                               aria-invalid="false"
                               aria-required="false"
                               aria-label=""
@@ -189,11 +222,11 @@ function SetupWorkspace() {
                               className={`${
                                 isAlert ? "margin_bottom_0" : ""
                               } c-input_text c-input_text--large`}
-                              id="setup-page-team-name"
-                              name="team-name"
-                              placeholder="예: Acme 마케팅 또는 Acme"
+                              id="setup-channel-name-input"
+                              name="setup-channel-name-input"
+                              placeholder="예: 4분기 예산, 가을 캠페인"
                               type="text"
-                              value={teamName}
+                              value={channelName}
                               onChange={handleValidate}
                               onFocus={handleInputFocus}
                               onBlur={handleInputBlur}
@@ -236,12 +269,21 @@ function SetupWorkspace() {
                                   className="c-alert__message"
                                   data-qa-alert-message="true"
                                 >
-                                  50 자까지만 입력할 수 있습니다.
+                                  80 자까지만 입력할 수 있습니다.
                                 </span>
                               </div>
                             ) : null}
                           </div>
                         </div>
+                        <button
+                          className="c-button c-button--primary c-button--large p-setup_page__content_button p-setup_page__content_button--aubergine margin_top_300 margin_right"
+                          data-qa="setup-page-team-name-submit"
+                          aria-label="이전 단계로 이동"
+                          type="submit"
+                          onClick={GotoSetupWorkspace}
+                        >
+                          이전
+                        </button>
                         <button
                           className="c-button c-button--primary c-button--large p-setup_page__content_button p-setup_page__content_button--aubergine margin_top_300"
                           data-qa="setup-page-team-name-submit"
@@ -253,7 +295,6 @@ function SetupWorkspace() {
                               ? "disabled"
                               : ""
                           }`}
-                          onClick={GotoSetupChannel}
                         >
                           다음
                         </button>
@@ -270,4 +311,4 @@ function SetupWorkspace() {
   );
 }
 
-export default SetupWorkspace;
+export default SetupChannel;
