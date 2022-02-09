@@ -9,13 +9,14 @@ const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 function LoginGoogle() {
   const navigate = useNavigate();
 
-  // 서버 요청
   const onLoginSuccess = (res) => {
-    // 브라우저 상에서 로그인한 사용자 이름 저장
-    // => 로그인 후에 워크스페이스 만드는 사용자 이름 저장 위함
-    const userName = { name: res.profileObj.name };
-    window.localStorage.setItem("userName", JSON.stringify(userName));
-    // window.localStorage.getItem("userName");
+    // 데이터 넘어가는지 테스트 코드
+    navigate("/SetupWorkspace", {
+      state: { userName: res.profileObj.name },
+    });
+    console.log("Login Success: ", res.profileObj.name);
+
+    // 서버 요청
     axios({
       method: "post",
       url: "http://localhost:9000/api/auth/googleLogin",
@@ -25,7 +26,9 @@ function LoginGoogle() {
       },
     })
       .then((res) => {
-        navigate("./SetupWorkspace");
+        navigate("/SetupWorkspace", {
+          state: { userName: res.profileObj.name },
+        });
         console.log("Login Success: ", res.profileObj);
       })
       .catch((error) => console.log("error: ", error.res));

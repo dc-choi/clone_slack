@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
 import "./css/SetupWorkspace.css";
 
 function SetupChannel() {
-  const [teamName, setTeamName] = useState("새 워크스페이스");
+  const location = useLocation();
+  const { userName, teamName } = location.state;
   const [channelName, setChannelName] = useState("");
   const [charcount, setCharCount] = useState(80);
   const [isAlert, setIsAlert] = useState(false);
@@ -39,29 +39,47 @@ function SetupChannel() {
       setValidation("VALID");
     }
   };
+
   useEffect(() => {
+    console.log(`userName: ${userName}`);
+    console.log(`ws_name: ${teamName}`);
     console.log(`ch_name: ${channelName}`);
-  }, [channelName]);
+  }, [userName, teamName, channelName]);
 
   const GotoSetupWorkspace = (e) => {
     navigate("/setUpWorkspace");
   };
 
-  //입력된 워크스페이스 이름 db저장
-  // const handleContinue = (e) => {
-  //   e.preventDefault();
-  //   if(validation === "VALID") {
-  //     axios({
-  //       method: "post",
-  //       url: "",
-  //       data: { ws_name: teamName},
-  //     }).then({
-  //       navigate("/SetupChannel", {
-  //         state: {ws_name: teamName},
-  //       });
-  //     });
-  //   };
-  // };
+  const GotoMain = (e) => {
+    navigate("/Main", {
+      state: {
+        userName: userName,
+        teamName: teamName,
+        channelName: channelName,
+      },
+    });
+  };
+
+  /* 입력된 워크스페이스 이름, 채널 이름, 
+  워크스페이스 생성자 이름(일단은 google로그인 사용자 이름만 넘김) db저장
+  */
+  const handleContinue = (e) => {
+    e.preventDefault();
+    if (validation === "VALID") {
+      axios({
+        method: "post",
+        url: "",
+        data: {
+          ch_writer: userName,
+          ws_name: teamName,
+          ch_name: channelName,
+        },
+      }).then(() => {
+        alert(`${teamName}가 생성됩니다.`);
+        navigate("/Main");
+      });
+    }
+  };
 
   return (
     <div className="app_root">
@@ -194,7 +212,7 @@ function SetupChannel() {
                       2/2단계
                     </div>
                     <div className="p-autoclog__hook">
-                      <form>
+                      <form onSubmit={handleContinue}>
                         <h2 className="p-setup_page__header p-setup_page__header--has-subheader">
                           현재 고객님의 팀은 어떤 일을 진행하고 계시나요?
                         </h2>
@@ -295,6 +313,7 @@ function SetupChannel() {
                               ? "disabled"
                               : ""
                           }`}
+                          onClick={GotoMain}
                         >
                           다음
                         </button>
