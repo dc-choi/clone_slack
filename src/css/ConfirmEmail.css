@@ -140,3 +140,47 @@ input[type="text" i] {
 .margin_right_250 {
   margin-right: 40px;
 }
+
+.confirmation_code_checker .confirmation_code_state_message {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.38463;
+  text-align: left;
+  color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1);
+}
+
+.c-alert--align_center {
+  justify-content: center;
+}
+
+.c-alert--boxed,
+.c-alert--custom,
+.c-alert--inline_boxed {
+  color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.46666667;
+  padding: 12px 16px;
+}
+
+.p-get_started_confirmation_code .c-alert--level_default {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.c-alert--level_default {
+  border-radius: 4px;
+  background-color: rgba(var(--sk_foreground_max_solid, 97, 96, 97), 0.1);
+  --saf-0: rgba(var(--sk_foreground_max_solid, 97, 96, 97), 0.4);
+  border: 1px solid var(--saf-0);
+}
+
+ol,
+p,
+ul {
+  margin-bottom: 16px;
+}

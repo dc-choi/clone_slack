@@ -2,13 +2,11 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
+import { SIGNIN_ALERT_EMPTY, SIGNIN_ALERT_INVALID } from "./constants/messages";
+import { rEmail } from "./constants/regEmail";
 import axios from "axios";
 import "./css/SignIn.css";
 import LoginGoogle from "./components/LoginGoogle";
-
-const rEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-const EMAIL_EMPTY = "이메일을 입력해주세요.";
-const EMAIL_INVALID = "죄송합니다. 이메일이 유효하지 않습니다.";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -28,9 +26,9 @@ function SignIn() {
     if (validation === "VALID") {
       axios({
         method: "post",
-        url: "http://192.168.0.8:9000/api/mail",
+        url: `${process.env.REACT_APP_SERVER}/api/mail`,
         data: { email: email },
-      }).then(function (response) {
+      }).then((response) => {
         navigate("/confirmemail", {
           state: { email: email, verificationCode: response.data.ranNum + "" },
         });
@@ -142,8 +140,10 @@ function SignIn() {
                     className="c-alert__message"
                     data-qa-alert-message="true"
                   >
-                    {isAlert && validation === "INVALID" && EMAIL_INVALID}
-                    {isAlert && validation === "EMPTY" && EMAIL_EMPTY}
+                    {isAlert &&
+                      validation === "INVALID" &&
+                      SIGNIN_ALERT_INVALID}
+                    {isAlert && validation === "EMPTY" && SIGNIN_ALERT_EMPTY}
                   </span>
                 </div>
               ) : null}
