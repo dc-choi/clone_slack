@@ -1,82 +1,52 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import { FiAlertTriangle } from "react-icons/fi";
 import "./css/ConfirmEmail.css";
 
-//새로고침을 누르면 /createnew 로 간다? -> signin
-//location.state.verificationCode가 없는 경우 navigate createnew
-
 function ConfirmEmail() {
-  const location = useLocation();
   const navigate = useNavigate();
-  const inputOne = useRef(null);
-  const inputTwo = useRef(null);
-  const inputThree = useRef(null);
-  const inputFour = useRef(null);
-  const inputFive = useRef(null);
-  const inputSix = useRef(null);
+  const location = useLocation();
   const { verificationCode } = location.state;
   const [isAlert, setIsAlert] = useState(false);
-  const [code, setCode] = useState({
-    one: "",
-    two: "",
-    three: "",
-    four: "",
-    five: "",
-    six: "",
-  });
+  const [code, setCode] = useState(["", "", "", "", "", ""]);
+  const inputRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
 
   useEffect(() => {
-    inputOne.current.focus();
+    inputRefs[0].current.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCode = (e) => {
-    if (!isNaN(e.target.value)) {
-      if (isAlert) setIsAlert(false);
-      if (e.target.ariaLabel === "one") inputTwo.current.focus();
-      else if (e.target.ariaLabel === "two") inputThree.current.focus();
-      else if (e.target.ariaLabel === "three") inputFour.current.focus();
-      else if (e.target.ariaLabel === "four") inputFive.current.focus();
-      else if (e.target.ariaLabel === "five") inputSix.current.focus();
-      setCode((prev) => {
-        return {
-          ...prev,
-          [e.target.ariaLabel]: e.target.value,
-        };
-      });
-    }
+    const value = e.target.value;
+    const label = +e.target.ariaLabel;
+    if (isNaN(value)) return;
+    isAlert && setIsAlert(false);
+    value !== "" && label !== 5 && inputRefs[label + 1].current.focus();
+    setCode((prev) => prev.map((val, i) => (i === label ? value : val)));
   };
 
   useEffect(() => {
-    if (
-      code.one !== "" &&
-      code.two !== "" &&
-      code.three !== "" &&
-      code.four !== "" &&
-      code.five !== "" &&
-      code.six !== ""
-    ) {
-      if (
-        code.one + code.two + code.three + code.four + code.five + code.six ===
-        verificationCode
-      )
+    if (code.every((item) => item !== "")) {
+      if (code.join("") === verificationCode) {
         console.log(`code equal`);
-      //navigate("/")
-      else setIsAlert(true);
+        //navigate("/")
+      } else setIsAlert(true);
     }
   }, [code, verificationCode]);
 
   useEffect(() => {
     if (isAlert) {
-      inputOne.current.focus();
-      setCode({
-        one: "",
-        two: "",
-        three: "",
-        four: "",
-        five: "",
-        six: "",
-      });
+      inputRefs[0].current.focus();
+      setCode((prev) => prev.map(() => ""));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAlert]);
 
   return (
@@ -122,36 +92,36 @@ function ConfirmEmail() {
                     <input
                       type="text"
                       maxLength="1"
-                      aria-label="one"
+                      aria-label="0"
                       aria-disabled="false"
                       aria-invalid="false"
-                      value={code.one}
+                      value={code[0]}
                       onChange={handleCode}
-                      ref={inputOne}
+                      ref={inputRefs[0]}
                     />
                   </div>
                   <div className="split_input_item">
                     <input
                       type="text"
                       maxLength="1"
-                      aria-label="two"
+                      aria-label="1"
                       aria-disabled="false"
                       aria-invalid="false"
-                      value={code.two}
+                      value={code[1]}
                       onChange={handleCode}
-                      ref={inputTwo}
+                      ref={inputRefs[1]}
                     />
                   </div>
                   <div className="split_input_item">
                     <input
                       type="text"
                       maxLength="1"
-                      aria-label="three"
+                      aria-label="2"
                       aria-disabled="false"
                       aria-invalid="false"
-                      value={code.three}
+                      value={code[2]}
                       onChange={handleCode}
-                      ref={inputThree}
+                      ref={inputRefs[2]}
                     />
                   </div>
                 </div>
@@ -161,36 +131,36 @@ function ConfirmEmail() {
                     <input
                       type="text"
                       maxLength="1"
-                      aria-label="four"
+                      aria-label="3"
                       aria-disabled="false"
                       aria-invalid="false"
-                      value={code.four}
+                      value={code[3]}
                       onChange={handleCode}
-                      ref={inputFour}
+                      ref={inputRefs[3]}
                     />
                   </div>
                   <div className="split_input_item">
                     <input
                       type="text"
                       maxLength="1"
-                      aria-label="five"
+                      aria-label="4"
                       aria-disabled="false"
                       aria-invalid="false"
-                      value={code.five}
+                      value={code[4]}
                       onChange={handleCode}
-                      ref={inputFive}
+                      ref={inputRefs[4]}
                     />
                   </div>
                   <div className="split_input_item">
                     <input
                       type="text"
                       maxLength="1"
-                      aria-label="six"
+                      aria-label="5"
                       aria-disabled="false"
                       aria-invalid="false"
-                      value={code.six}
+                      value={code[5]}
                       onChange={handleCode}
-                      ref={inputSix}
+                      ref={inputRefs[5]}
                     />
                   </div>
                 </div>
@@ -200,11 +170,25 @@ function ConfirmEmail() {
               className="confirmation_code_checker"
               data-state="empty-status"
             >
-              {isAlert && (
-                <p>그 코드는 유효하지 않습니다. 다시 시도해보세요!</p>
-              )}
-              <p className="c-alert confirmation_code_state_message c-alert--boxed invisible c-alert--level_default c-alert--align_center empty-status">
-                <span className="c-alert__message">&nbsp;</span>
+              <p
+                className={`c-alert confirmation_code_state_message c-alert--boxed c-alert--align_center ${
+                  isAlert
+                    ? "c-alert--level_error error"
+                    : "invisible c-alert--level_default empty-status"
+                }`}
+              >
+                <i
+                  className="c-icon c-alert__icon c-icon--warning c-icon--inherit c-icon--inline"
+                  type="warning"
+                  data-qa-alert-icon="true"
+                  data-qa-alert-icon-type="warning"
+                  aria-hidden="true"
+                >
+                  <FiAlertTriangle color="red" size="21" />
+                </i>
+                <span className="c-alert__message">
+                  그 코드는 유효하지 않습니다. 다시 시도해보세요!
+                </span>
               </p>
             </div>
           </div>

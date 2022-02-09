@@ -1,12 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
+import { SIGNUP_ALERT_EMPTY, SIGNUP_ALERT_INVALID } from "./constants/messages";
+import { rEmail } from "./constants/regEmail";
 import axios from "axios";
 import "./css/SignUp.css";
-
-const ALERT_EMPTY = "이는 필수이며 이메일을 입력해야 합니다.";
-const ALERT_INVALID = "이메일 주소가 유효하지 않은 것 같습니다.";
-const rEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -26,7 +24,7 @@ function SignUp() {
     if (validation === "VALID") {
       axios({
         method: "post",
-        url: "http://localhost:9000/api/mail",
+        url: `${process.env.REACT_APP_SERVER}/api/mail`,
         data: { email: email },
       }).then(function (response) {
         navigate("/confirmemail", {
@@ -124,8 +122,8 @@ function SignUp() {
                   <FiAlertTriangle color="red" size="17" />
                 </i>
                 <span className="c-alert__message" data-qa-alert-message="true">
-                  {isAlert && validation === "INVALID" && ALERT_INVALID}
-                  {isAlert && validation === "EMPTY" && ALERT_EMPTY}
+                  {isAlert && validation === "INVALID" && SIGNUP_ALERT_INVALID}
+                  {isAlert && validation === "EMPTY" && SIGNUP_ALERT_EMPTY}
                 </span>
               </div>
             ) : null}

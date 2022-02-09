@@ -4,32 +4,11 @@ import { useEffect, useState } from "react";
 import "./css/Workspace.css";
 import WorkspaceList from "./components/WorkspaceList";
 import InvitedList from "./components/InvitedList";
-//새로운 이메일로 로그인한 상황에 보이는 페이지
-const workspace_objs = [
-  {
-    id: 0,
-    title: "[5.2]42s_Piscine",
-    pesonnel: 310,
-    to: "/",
-  },
-  {
-    id: 1,
-    title: "Slack",
-    pesonnel: 1,
-    to: "/",
-  },
-  {
-    id: 2,
-    title: "Slack",
-    pesonnel: 1,
-    to: "/",
-  },
-];
-const invited_objs = [
-  { id: 0, title: "K-BioX", personnel: 2777, to: "/" },
-  { id: 1, title: "Uni-D", personnel: 228, to: "/" },
-];
-const email = "su1715@sookmyung.ac.kr"; //임시값
+import {
+  email,
+  workspace_objs,
+  invited_objs,
+} from "./constants/userWorkspacesData";
 
 function Workspaces() {
   const [hoverlist, setHoverlist] = useState([]);
@@ -43,7 +22,7 @@ function Workspaces() {
   const handleMouseOver = (e) => {
     if (e.target.dataset.kind === "workspace_link") {
       setHoverlist((prev) =>
-        prev.map((ishover, i) => (i === e.target.id * 1 ? true : false))
+        prev.map((_, i) => (i === e.target.id * 1 ? true : false))
       );
     }
   };
