@@ -6,7 +6,7 @@ import "./css/SetupWorkspace.css";
 
 function SetupChannel() {
   const location = useLocation();
-  const { userName, teamName } = location.state;
+  const { userName, userEmail, teamName } = location.state;
   const [channelName, setChannelName] = useState("");
   const [charcount, setCharCount] = useState(80);
   const [isAlert, setIsAlert] = useState(false);
@@ -42,9 +42,10 @@ function SetupChannel() {
 
   useEffect(() => {
     console.log(`userName: ${userName}`);
+    console.log(`userEmail: ${userEmail}`);
     console.log(`ws_name: ${teamName}`);
     console.log(`ch_name: ${channelName}`);
-  }, [userName, teamName, channelName]);
+  }, [userName, userEmail, teamName, channelName]);
 
   const GotoSetupWorkspace = (e) => {
     navigate("/setUpWorkspace");
@@ -54,6 +55,7 @@ function SetupChannel() {
     navigate("/Main", {
       state: {
         userName: userName,
+        userEmail: userEmail,
         teamName: teamName,
         channelName: channelName,
       },
@@ -64,21 +66,30 @@ function SetupChannel() {
   워크스페이스 생성자 이름(일단은 google로그인 사용자 이름만 넘김) db저장
   */
   const handleContinue = (e) => {
-    e.preventDefault();
-    if (validation === "VALID") {
-      axios({
-        method: "post",
-        url: "",
-        data: {
-          ch_writer: userName,
-          ws_name: teamName,
-          ch_name: channelName,
-        },
-      }).then(() => {
-        alert(`${teamName}가 생성됩니다.`);
-        navigate("/Main");
-      });
-    }
+    // e.preventDefault();
+    // if (validation === "VALID") {
+    //   axios({
+    //     method: "post",
+    //     url: "/",
+    //     data: {
+    //       us_name: userName, // 사용자 email보내기 + session
+    //       ws_name: teamName,
+    //       ch_name: channelName,
+    //     },
+    //   }).then(function (response) {
+    //     alert(`${teamName}가 생성됩니다.`);
+    //     navigate(`/Main/${ws_code}`, {
+    //       state: {
+    //         us_name: userName,
+    //         ws_name: teamName,
+    //         ch_name: channelName,
+    //         ws_code: response.data.ws_code,
+    //         // => db에서 워크스페이스 고유 id만 받기
+    //       },
+    //     });
+    //     // user키 id로 url만들어서 그쪽으로 넘어가기 공부!!
+    //   });
+    // }
   };
 
   return (

@@ -6,7 +6,7 @@ import "./css/SetupWorkspace.css";
 
 function SetupWorkspace() {
   const location = useLocation();
-  const { userName } = location.state;
+  const { userName, userEmail } = location.state;
   const [teamName, setTeamName] = useState("새 워크스페이스");
   const [charcount, setCharCount] = useState(42);
   const [isAlert, setIsAlert] = useState(false);
@@ -43,12 +43,13 @@ function SetupWorkspace() {
   };
   useEffect(() => {
     console.log(`userName: ${userName}`);
+    console.log(`userEmail: ${userEmail}`);
     console.log(`ws_name: ${teamName}`);
-  }, [userName, teamName]);
+  }, [userName, userEmail, teamName]);
 
   const GotoSetupChannel = (e) => {
     navigate("/setUpChannel", {
-      state: { userName: userName, teamName: teamName },
+      state: { userName: userName, userEmail: userEmail, teamName: teamName },
     });
   };
 
