@@ -1,27 +1,28 @@
 import React from "react";
 import "../css/LoginGoogle.css";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios";
 
 function LoginGoogle() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onLoginSuccess = (res) => {
+    window.open("http://localhost:9000/api/auth/googleLogin", "_self");
     // 서버 요청
-    axios({
-      method: "get",
-      url: "http://localhost:9000/api/auth/googleLogin",
-    })
-      .then((res) => {
-        navigate("/Workspaces", {
-          state: {
-            userName: res.profileObj.name,
-            userEmail: res.profileObj.email,
-          },
-        });
-        console.log("Login Success: ", res.profileObj);
-      })
-      .catch((error) => console.log("error: ", error.res));
+    // axios({
+    //   method: "get",
+    //   url: "http://localhost:9000/api/auth/googleLogin",
+    // })
+    //   .then((res) => {
+    //     navigate("/Workspaces", {
+    //       state: {
+    //         userName: res.profileObj.name,
+    //         userEmail: res.profileObj.email,
+    //       },
+    //     });
+    //     console.log("Login Success: ", res.profileObj);
+    //   })
+    //   .catch((error) => console.log("error: ", error.res));
   };
 
   return (
