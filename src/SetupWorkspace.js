@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./css/SetupWorkspace.css";
 
 function SetupWorkspace() {
+  const location = useLocation();
+  const { userName, userEmail } = location.state;
   const [teamName, setTeamName] = useState("새 워크스페이스");
   const [charcount, setCharCount] = useState(42);
   const [isAlert, setIsAlert] = useState(false);
@@ -40,36 +42,16 @@ function SetupWorkspace() {
     }
   };
   useEffect(() => {
+    console.log(`userName: ${userName}`);
+    console.log(`userEmail: ${userEmail}`);
     console.log(`ws_name: ${teamName}`);
-  }, [teamName]);
-
-  // workspaceName localstorage에 저장
-  const saveWorkspaceName = () => {
-    const workspaceName = { ws_name: teamName };
-    window.localStorage.setItem("ws_name", JSON.stringify(workspaceName));
-  };
+  }, [userName, userEmail, teamName]);
 
   const GotoSetupChannel = (e) => {
-    saveWorkspaceName(e);
-    // window.localStorage.getItem("teamName");
-    navigate("/setUpChannel");
+    navigate("/setUpChannel", {
+      state: { userName: userName, userEmail: userEmail, teamName: teamName },
+    });
   };
-
-  //입력된 워크스페이스 이름 db저장
-  // const handleContinue = (e) => {
-  //   e.preventDefault();
-  //   if(validation === "VALID") {
-  //     axios({
-  //       method: "post",
-  //       url: "",
-  //       data: { ws_name: teamName},
-  //     }).then({
-  //       navigate("/SetupChannel", {
-  //         state: {ws_name: teamName},
-  //       });
-  //     });
-  //   };
-  // };
 
   return (
     <div className="app_root">
