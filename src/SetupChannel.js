@@ -6,7 +6,8 @@ import "./css/SetupWorkspace.css";
 
 function SetupChannel() {
   const location = useLocation();
-  const { userName, userEmail, teamName } = location.state;
+  const { teamName } = location.state;
+
   const [channelName, setChannelName] = useState("");
   const [charcount, setCharCount] = useState(80);
   const [isAlert, setIsAlert] = useState(false);
@@ -41,55 +42,46 @@ function SetupChannel() {
   };
 
   useEffect(() => {
-    console.log(`userName: ${userName}`);
-    console.log(`userEmail: ${userEmail}`);
     console.log(`ws_name: ${teamName}`);
     console.log(`ch_name: ${channelName}`);
-  }, [userName, userEmail, teamName, channelName]);
+  }, [teamName, channelName]);
 
   const GotoSetupWorkspace = (e) => {
     navigate("/setUpWorkspace");
   };
 
   const GotoMain = (e) => {
-    navigate("/Main", {
+    navigate("/Main/:id", {
       state: {
-        userName: userName,
-        userEmail: userEmail,
         teamName: teamName,
         channelName: channelName,
       },
     });
   };
 
-  /* 입력된 워크스페이스 이름, 채널 이름, 
-  워크스페이스 생성자 이름(일단은 google로그인 사용자 이름만 넘김) db저장
-  */
   const handleContinue = (e) => {
-    // e.preventDefault();
-    // if (validation === "VALID") {
-    //   axios({
-    //     method: "post",
-    //     url: "/",
-    //     data: {
-    //       us_name: userName, // 사용자 email보내기 + session
-    //       ws_name: teamName,
-    //       ch_name: channelName,
-    //     },
-    //   }).then(function (response) {
-    //     alert(`${teamName}가 생성됩니다.`);
-    //     navigate(`/Main/${ws_code}`, {
-    //       state: {
-    //         us_name: userName,
-    //         ws_name: teamName,
-    //         ch_name: channelName,
-    //         ws_code: response.data.ws_code,
-    //         // => db에서 워크스페이스 고유 id만 받기
-    //       },
-    //     });
-    //     // user키 id로 url만들어서 그쪽으로 넘어가기 공부!!
-    //   });
-    // }
+    e.preventDefault();
+    if (validation === "VALID") {
+      axios({
+        method: "post",
+        url: `${process.env.REACT_APP_SERVER}/api/workSpace/setUpWorkspace`,
+        data: {
+          ws_name: teamName,
+          ch_name: channelName,
+        },
+      }).then(function (response) {
+        alert(`${teamName}가 생성됩니다.`);
+        const workspaceId = response.data;
+        navigate(`/Main/${workspaceId}`, {
+          state: {
+            teamName: teamName,
+            channelName: channelName,
+            workspaceId: response.data,
+            // => db에서 워크스페이스 고유 id만 받기(ws_code id로 다이나믹 url주소 만들기 위함)
+          },
+        });
+      });
+    }
   };
 
   return (
