@@ -61,3 +61,15 @@ button {
   text-shadow: none;
   margin: 0em;
 }
+
+.google_auth__icon {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
