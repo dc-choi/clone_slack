@@ -1,26 +1,23 @@
 //Workspaces 더미데이터
 export const workspace_objs = [
   {
-    id: 0,
+    id: "AAAAAAA",
     title: "[5.2]42s_Piscine",
     pesonnel: 310,
-    to: "/",
   },
   {
-    id: 1,
+    id: "BBBBBBB",
     title: "Slack",
     pesonnel: 1,
-    to: "/",
   },
   {
-    id: 2,
+    id: "CCCCCCC",
     title: "Slack",
     pesonnel: 1,
-    to: "/",
   },
 ];
 export const invited_objs = [
-  { id: 0, title: "K-BioX", personnel: 2777, to: "/" },
-  { id: 1, title: "Uni-D", personnel: 228, to: "/" },
+  { id: "DDDDDDD", title: "K-BioX", personnel: 2777 },
+  { id: "EEEEEEE", title: "Uni-D", personnel: 228 },
 ];
 export const email = "su1715@sookmyung.ac.kr";

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function InvitedPanel({ obj }) {
   return (
-    <div className="p-workspace_info" key={obj.id}>
+    <div className="p-workspace_info">
       <div className="p-workspace_info__icon">
         <i
           className="c-team_icon p-workspace_info__team_icon c-team_icon--default"
