@@ -128,7 +128,7 @@ input[type="password"].c-input_text.c-input_text--large {
 }
 
 .p-get_started_aubergine_button--bright {
-  color: #fff;
+  color: #fff !important;
   background-color: #611f69;
   border: none;
 }
