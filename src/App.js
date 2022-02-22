@@ -18,7 +18,7 @@ function App() {
         <Route path="/Workspaces" element={<Workspaces />} />
         <Route path="/SetupWorkspace" element={<SetupWorkspace />} />
         <Route path="/SetupChannel" element={<SetupChannel />} />
-        <Route path="/Main" element={<Main />} />
+        <Route path="/Main/:workspaceId" element={<Main />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,17 +1,25 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 function Main() {
+  const ws_code = useParams();
+  console.log(ws_code);
+  // ws_code를 제대로 받아오는지 확인
   const location = useLocation();
-  const { userName, userEmail, teamName, channelName } = location.state;
+  const { teamName, channelName } = location.state;
   useEffect(() => {
-    console.log(`userName: ${userName}`);
-    console.log(`userEmail: ${userEmail}`);
     console.log(`ws_name: ${teamName}`);
     console.log(`ch_name: ${channelName}`);
-  }, [userName, userEmail, teamName, channelName]);
+  }, [teamName, channelName]);
 
-  return <>슬랙 메인 화면</>;
+  return (
+    <>
+      <h1>임시 메인 화면</h1>
+      <div>워크스페이스 이름: {teamName}</div>
+
+      <div>채널 이름: {channelName}</div>
+    </>
+  );
 }
 
 export default Main;
