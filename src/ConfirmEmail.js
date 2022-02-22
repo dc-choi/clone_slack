@@ -36,7 +36,7 @@ function ConfirmEmail() {
     if (code.every((item) => item !== "")) {
       if (code.join("") === verificationCode) {
         console.log(`code equal`);
-        //navigate("/")
+        navigate("/SetupWorkspace");
       } else setIsAlert(true);
     }
   }, [code, verificationCode]);
