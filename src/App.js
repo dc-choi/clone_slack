@@ -5,7 +5,7 @@ import SignUp from "./SignUp";
 import SetupWorkspace from "./SetupWorkspace";
 import SetupChannel from "./SetupChannel";
 import Workspaces from "./Workspaces";
-import Main from "./Main";
+import Client from "./Client";
 import "./css/App.css";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
         <Route path="/Workspaces" element={<Workspaces />} />
         <Route path="/SetupWorkspace" element={<SetupWorkspace />} />
         <Route path="/SetupChannel" element={<SetupChannel />} />
-        <Route path="/Main" element={<Main />} />
+        <Route path="/client/:id/*" element={<Client />} />
       </Routes>
     </BrowserRouter>
   );

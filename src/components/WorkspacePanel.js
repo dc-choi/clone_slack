@@ -4,13 +4,12 @@ import { HiArrowSmRight } from "react-icons/hi";
 function WorkspacePanel({ obj, handleMouseOver, handleMouseLeave, isHover }) {
   return (
     <div
-      id={obj.id}
       data-kind="workspace_link"
       className="c-link p-workspaces_list__link"
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
     >
-      <Link to="/">
+      <Link to={`/client/${obj.id}`}>
         <div className="p-workspace_info">
           <div className="p-workspace_info__icon">
             <i
