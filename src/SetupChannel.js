@@ -51,9 +51,7 @@ function SetupChannel() {
   };
 
   const GotoMain = (e) => {
-    // 서버 요청 없이 test위한 코드
-
-    navigate(`/WorkspaceMain`, {
+    navigate("/client/:id", {
       state: {
         teamName: teamName,
         channelName: channelName,

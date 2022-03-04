@@ -2,11 +2,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import "./css/ConfirmEmail.css";
+import axios from "axios";
 
 function ConfirmEmail() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { verificationCode } = location.state;
+  const { verificationCode, before, email } = location.state;
   const [isAlert, setIsAlert] = useState(false);
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const inputRefs = [
@@ -36,7 +37,50 @@ function ConfirmEmail() {
     if (code.every((item) => item !== "")) {
       if (code.join("") === verificationCode) {
         console.log(`code equal`);
-        navigate("/SetupWorkspace");
+        if (before === "SignUp") {
+          axios({
+            method: "post",
+            url: `${process.env.REACT_APP_SERVER}/api/auth/localSignup`,
+            data: { us_email: email },
+          })
+            .then((res) => {
+              navigate("/SetupWorkspace");
+            })
+            .catch((error) => {
+              if (error.response) {
+                // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+                alert(error.response.data);
+              } else if (error.request) {
+                console.log(error.request);
+              } else {
+                console.log("Error", error.message);
+              }
+              console.log(error.config);
+              navigate("/SignUp");
+            });
+        } else if (before === "SignIn") {
+          axios
+            .post(
+              `${process.env.REACT_APP_SERVER}/api/auth/localSignin`,
+              { us_email: email },
+              { withCredentials: true }
+            )
+            .then((res) => {
+              console.log(res);
+              navigate("/Workspaces");
+            })
+            .catch((error) => {
+              if (error.response) {
+                alert(error.response.data);
+              } else if (error.request) {
+                console.log(error.request);
+              } else {
+                console.log("Error", error.message);
+              }
+              console.log(error.config);
+              navigate("/SignIn");
+            });
+        }
       } else setIsAlert(true);
     }
   }, [code, verificationCode]);
