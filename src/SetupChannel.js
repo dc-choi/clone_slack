@@ -51,7 +51,7 @@ function SetupChannel() {
   };
 
   const GotoMain = (e) => {
-    navigate("/Main/:id", {
+    navigate("/client/:id", {
       state: {
         teamName: teamName,
         channelName: channelName,

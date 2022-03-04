@@ -30,7 +30,11 @@ function SignIn() {
         data: { email: email },
       }).then((response) => {
         navigate("/confirmemail", {
-          state: { email: email, verificationCode: response.data.ranNum + "" },
+          state: {
+            before: "SignIn",
+            email: email,
+            verificationCode: response.data.ranNum + "",
+          },
         });
       });
     } else setIsAlert(true);
