@@ -1,13 +1,14 @@
 import React from "react";
 import Header from "./components/Header";
-import "./css/WorkspaceMain.css";
+import ClientSidebar from "./components/ClientSidebar";
 
-function WorkspaceMain() {
+function Client() {
   return (
     <>
       <Header />
+      <ClientSidebar />
     </>
   );
 }
 
-export default WorkspaceMain;
+export default Client;

@@ -5,7 +5,7 @@ import SignUp from "./SignUp";
 import SetupWorkspace from "./SetupWorkspace";
 import SetupChannel from "./SetupChannel";
 import Workspaces from "./Workspaces";
-import WorkspaceMain from "./WorkspaceMain";
+import Client from "./Client";
 import "./css/App.css";
 
 function App() {
@@ -18,8 +18,7 @@ function App() {
         <Route path="/Workspaces" element={<Workspaces />} />
         <Route path="/SetupWorkspace" element={<SetupWorkspace />} />
         <Route path="/SetupChannel" element={<SetupChannel />} />
-        <Route path="/WorkspaceMain" element={<WorkspaceMain />} />
-        <Route path="/WorkspaceMain/:workspaceId" element={<WorkspaceMain />} />
+        <Route path="/client/:id/*" element={<Client />} />
       </Routes>
     </BrowserRouter>
   );

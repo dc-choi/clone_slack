@@ -76,7 +76,7 @@
   --saf-0: rgba(var(--sk_foreground_mid, 29, 28, 29), 0.3);
   background: var(--p-channel_sidebar__top-nav-text--opacity-20);
 }
-.c-button-unstyled {
+.c-button-unstyled_header {
   padding-left: 8px !important;
   padding-right: 6px !important;
 
@@ -238,7 +238,7 @@ i {
 .p-top_nav .p-ia__nav__user__presence,
 .p-top_nav .p-ia__nav__user__presence--stroke {
   position: absolute;
-  bottom: -6px;
+  bottom: -1px !important;
   right: -8px;
 }
 .p-ia__nav__user__presence--stroke {

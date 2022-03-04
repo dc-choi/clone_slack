@@ -1,0 +1,309 @@
+/* ClientSidebar */
+.p-workspace-layout {
+  grid-template-columns: 248px auto;
+  grid-template-areas: "p-workspace__sidebar p-workspace__primary_view";
+}
+.p-workspace-layout {
+  display: grid;
+  grid-template-rows: auto;
+  overflow: hidden;
+  position: relative;
+}
+.p-workspace-layout .p-workspace__sidebar {
+  grid-template-areas: "p-workspace__channel_sidebar";
+  grid-template-rows: auto;
+  overflow: hidden;
+}
+.p-workspace__sidebar {
+  min-width: 248px;
+  grid-area: p-workspace__sidebar;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 36px auto;
+  grid-template-areas:
+    "p-workspace__sidebar_header"
+    "p-workspace__channel_sidebar";
+  position: relative;
+}
+.p-workspace-layout .p-workspace__channel_sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+.p-workspace__channel_sidebar {
+  grid-area: p-workspace__channel_sidebar;
+  background-color: #3f0e40;
+  width: 220px;
+  height: 95vh;
+}
+
+/* WorkspaceInfo */
+.p-ia__sidebar_header {
+  color: #ffffff;
+  box-sizing: inherit;
+}
+.p-ia__sidebar_header--ia_details_popover {
+  height: 50px !important;
+  font-size: 18px;
+  line-height: 1.33334;
+  font-weight: 900;
+}
+.p-ia__sidebar_header {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  height: 64px;
+  background: var(--p-channel_sidebar__column-bg);
+}
+.p-ia__sidebar_header--top-nav .p-ia__sidebar_header__button,
+.p-ia__sidebar_header--top-nav .p-ia__sidebar_header__mode {
+  background-color: initial;
+  border-color: rgb(82, 38, 83);
+}
+.p-ia__sidebar_header__button:not(.p-ia__sidebar_header__button--creator-setup) {
+  cursor: pointer;
+  padding-right: 54px;
+}
+.p-ia__sidebar_header__button {
+  outline: none;
+}
+.p-ia__sidebar_header__button,
+.p-ia__sidebar_header__mode {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 19px 0 16px;
+  transition-property: background-color, border-color;
+  transition-duration: 80ms;
+  transition-timing-function: cubic-bezier(0.36, 0.19, 0.29, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+  position: relative;
+  z-index: 1;
+  flex-direction: row-reverse;
+}
+.p-ia__sidebar_header__info {
+  flex: 1;
+  min-width: 0;
+  order: 1;
+}
+.p-ia__sidebar_header__team_name {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  padding-left: 4px;
+  margin-left: -4px;
+}
+.c-button-unstyled {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  line-height: inherit;
+  overflow: initial;
+  padding: 0;
+  text-align: initial;
+  vertical-align: initial;
+  cursor: pointer;
+}
+
+.p-ia__sidebar_header__mode__name,
+.p-ia__sidebar_header__team_name_text {
+  min-width: 0;
+  font-weight: 900;
+  text-overflow: ellipsis; /*말줄임표*/
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+}
+.p-ia__sidebar_header__menu_icon {
+  flex-shrink: 0;
+  width: 20px;
+}
+.c-icon {
+  position: relative;
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ChannelList */
+.p-channel_sidebar__static_list__item--contain.open {
+  contain: strict;
+
+  margin-top: 10px;
+}
+
+.c-virtual_list__item,
+.c-virtual_list__sticky_container {
+  position: relative;
+
+  width: 100%;
+}
+.p-channel_sidebar--classic_nav {
+  font-size: 15px;
+}
+.p-channel_sidebar--iap1 .p-channel_sidebar__section_heading,
+.p-drag_layer .p-channel_sidebar__section_heading {
+  background: #3f0e40;
+}
+.p-channel_sidebar--iap1 .p-channel_sidebar__section_heading,
+.p-drag_layer .p-channel_sidebar__section_heading {
+  height: 36px;
+  background: var(--p-channel_sidebar__column-bg);
+}
+.p-channel_sidebar--iap1 .p-channel_sidebar__channel,
+.p-channel_sidebar--iap1 .p-channel_sidebar__link,
+.p-channel_sidebar--iap1 .p-channel_sidebar__section_heading,
+.p-channel_sidebar--iap1 .p-channel_sidebar__section_placeholder,
+.p-drag_layer .p-channel_sidebar__channel,
+.p-drag_layer .p-channel_sidebar__link,
+.p-drag_layer .p-channel_sidebar__section_heading,
+.p-drag_layer .p-channel_sidebar__section_placeholder {
+  height: 28px;
+  line-height: 28px;
+}
+.p-channel_sidebar--iap1 .p-channel_sidebar__channel,
+.p-channel_sidebar--iap1 .p-channel_sidebar__link,
+.p-channel_sidebar--iap1 .p-channel_sidebar__section_heading,
+.p-channel_sidebar--iap1 .p-channel_sidebar__section_placeholder {
+  padding: 0 16px;
+}
+.p-channel_sidebar__channel,
+.p-channel_sidebar__link,
+.p-channel_sidebar__section_heading,
+.p-channel_sidebar__section_placeholder {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 26px;
+  line-height: 26px;
+  margin-top: 8px;
+  padding: 15px 12px 15px 15px;
+  width: 100%;
+  border-radius: 0;
+}
+.p-channel_sidebar__section_heading_expand_container {
+  width: 26px;
+  height: 26px;
+  padding-left: 2px;
+  padding-top: 2px;
+  margin: 0 4px 0 -6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+.p-channel_sidebar--iap1 .p-channel_sidebar__section_heading_expand {
+  font-size: 18px;
+  width: 26px;
+  opacity: 1;
+}
+.p-channel_sidebar__section_heading_expand {
+  font-family: Slack v2;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  flex-shrink: 0;
+  opacity: 0.64;
+  height: 26px;
+  position: relative;
+  transition: transform 0.1s, opacity 0.1s;
+  cursor: pointer;
+}
+.p-channel_sidebar__section_heading_expand.open {
+  font-family: Slack v2;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  flex-shrink: 0;
+  opacity: 0.64;
+  height: 26px;
+  position: relative;
+  /*클릭했을 때 돌아가게*/
+  transform: rotate(-90deg);
+  transition: transform 0.1s, opacity 0.1s;
+  cursor: pointer;
+}
+
+.c-icon--inline {
+  width: 20px;
+  height: auto;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+.c-icon {
+  align-items: center;
+  justify-content: center;
+}
+.p-channel_sidebar--iap1 .p-channel_sidebar__section_heading_label_chaanelList,
+.p-drag_layer .p-channel_sidebar__section_heading_label_chaanelList {
+  font-weight: 500;
+}
+.p-channel_sidebar__section_heading_label_chaanelList {
+  font-weight: 500 !important;
+  line-height: 28px;
+  color: rgb(188, 171, 188);
+  display: block;
+
+  opacity: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  flex: 1 1 0;
+  padding-right: 8px;
+  transition: padding-right 0s ease-in-out 0.3s, color 0.1s ease-out 0s;
+}
+.p-channel_sidebar__section_heading_label_overflow {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.p-channel_sidebar__section_heading_right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.p-channel_sidebar--iap1 .p-channel_sidebar__section_heading_plus,
+.p-drag_layer .p-channel_sidebar__section_heading_plus {
+  padding: 3px;
+  border-radius: 4px;
+}
+.c-button-unstyled {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  line-height: inherit;
+  overflow: initial;
+  padding: 0;
+  text-align: initial;
+  vertical-align: initial;
+  cursor: pointer;
+}
+
+.p-channel_sidebar__name {
+  margin-left: 4px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 1;
+  color: rgb(188, 171, 188);
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { BiSearch } from "react-icons/bi";
 import { BsCircleFill } from "react-icons/bs";
-import "../css/WorkspaceMain.css";
+import "../css/Header.css";
 
 function Header() {
   const workspaceName = "새 워크스페이스";
@@ -16,7 +16,7 @@ function Header() {
         <div className="p-top_nav__sidebar"></div>
         <div className="p-top_nav__search__container">
           <button
-            className="c-button-unstyled p-top_nav__search p-top_nav__search--windows-linux"
+            className="c-button-unstyled_header p-top_nav__search p-top_nav__search--windows-linux"
             aria-label="검색"
             data-qa="top_nav_search"
             delay="150"
