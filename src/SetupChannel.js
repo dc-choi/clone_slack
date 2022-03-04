@@ -61,6 +61,7 @@ function SetupChannel() {
 
   const handleContinue = (e) => {
     e.preventDefault();
+    // 서버 api요청
     if (validation === "VALID") {
       axios({
         method: "post",
@@ -72,7 +73,7 @@ function SetupChannel() {
       }).then(function (response) {
         alert(`${teamName}가 생성됩니다.`);
         const workspaceId = response.data;
-        navigate(`/Main/${workspaceId}`, {
+        navigate(`/WorkspaceMain/${workspaceId}`, {
           state: {
             teamName: teamName,
             channelName: channelName,
