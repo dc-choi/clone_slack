@@ -7,7 +7,7 @@ function LoginGoogle() {
   // const navigate = useNavigate();
 
   const onLoginSuccess = (res) => {
-    window.open("http://localhost:9000/api/auth/googleLogin", "_self");
+    window.open("https://localhost:9000/api/auth/googleLogin", "_self");
     // 서버 요청
     // axios({
     //   method: "get",
