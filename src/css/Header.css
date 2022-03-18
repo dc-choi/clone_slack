@@ -239,7 +239,7 @@ i {
 .p-top_nav .p-ia__nav__user__presence--stroke {
   position: absolute;
   bottom: -1px !important;
-  right: -8px;
+  right: -19px;
 }
 .p-ia__nav__user__presence--stroke {
   color: #350d36;
@@ -257,10 +257,4 @@ i {
 }
 .p-top_nav .p-ia__nav__user__presence {
   color: #2bac76;
-}
-.p-top_nav .p-ia__nav__user__presence,
-.p-top_nav .p-ia__nav__user__presence--stroke {
-  position: absolute;
-  bottom: -6px;
-  right: -8px;
 }

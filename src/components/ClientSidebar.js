@@ -1,6 +1,7 @@
 import React from "react";
 import WorkspaceInfo from "./WorkspaceInfo";
 import ChannelList from "./ChannelList";
+import DmList from "./DmList";
 
 function ClientSidebar() {
   return (
@@ -12,6 +13,7 @@ function ClientSidebar() {
         >
           <WorkspaceInfo />
           <ChannelList />
+          <DmList />
         </div>
       </div>
     </div>
