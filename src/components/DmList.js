@@ -1,13 +1,13 @@
-//채널리스트 보여주고, 닫기 열기, 채널 설정
+//dm리스트 보여주고, 닫기 열기, 채널 설정
 import React from "react";
 import { useState } from "react";
 import "../css/ClientSidebar.css";
 import { MdArrowDropDown } from "react-icons/md";
-import ChannelPanel from "./ChannelPanel";
-import { channels_objs } from "../constants/channelData";
+import DM from "./DM";
+import { dms_objs } from "../constants/channelData";
 import { BsPlusLg } from "react-icons/bs";
 
-function ChannelList() {
+function DmList() {
   const [closeList, setcloseList] = useState(false);
   const [viewMenu, setViewMenu] = useState(false);
 
@@ -47,7 +47,7 @@ function ChannelList() {
             data-sk="tooltip_parent"
           >
             <span className="p-channel_sidebar__section_heading_label_overflow">
-              채널
+              다이렉트 메시지
             </span>
           </div>
           <div className="p-channel_sidebar__section_heading_right">
@@ -70,9 +70,9 @@ function ChannelList() {
           aria-owns="C031CS07SLD C0325FW7S1E addMoreChannels"
         ></div>
       </div>
-      {viewMenu ? <ChannelPanel channels_objs={channels_objs} /> : null}
+      {viewMenu ? <DM dms_objs={dms_objs} /> : null}
     </>
   );
 }
 
-export default ChannelList;
+export default DmList;
